@@ -14,8 +14,8 @@ public class OpenLoopState extends CommandBase {
 
     @Override
   public void execute() {
-    double throttle = ControllerMap.getDriveStick().getRawAxis(ControllerMap.XBox_Controller.Axis.LEFT_STICK_Y);
-    double rotation = ControllerMap.getDriveStick().getRawAxis(ControllerMap.XBox_Controller.Axis.RIGHT_STICK_X);
+    double throttle = ControllerMap.getDriveStick().getRawAxis(ControllerMap.Logitech_Controller.Axis.STICK_Y);
+    double rotation = ControllerMap.getDriveStick().getRawAxis(ControllerMap.Logitech_Controller.Axis.STICK_Z);
     DriveTrain.getInstance().setArcade(throttle, rotation);
   }
 
