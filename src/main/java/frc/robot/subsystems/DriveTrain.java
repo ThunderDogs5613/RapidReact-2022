@@ -20,6 +20,13 @@ public class DriveTrain extends SubsystemBase {
     motorLR = new TalonSRX(3);
   }
 
+  public void setPower(double leftPower, double rightPower) {
+    motorRF.set(ControlMode.PercentOutput, rightPower);
+    motorRR.set(ControlMode.PercentOutput, rightPower);
+    motorLF.set(ControlMode.PercentOutput, leftPower);
+    motorLR.set(ControlMode.PercentOutput, leftPower);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
