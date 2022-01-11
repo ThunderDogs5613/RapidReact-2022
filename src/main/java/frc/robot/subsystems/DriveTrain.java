@@ -13,12 +13,20 @@ public class DriveTrain extends SubsystemBase {
 
   private TalonSRX motorRF, motorRR, motorLF, motorLR;
 
-  
-  public DriveTrain() {
+  private static DriveTrain instance;
+
+  private DriveTrain() {
     motorRF = new TalonSRX(RobotMap.RIGHT_FRONT_MOTOR);
     motorRR = new TalonSRX(RobotMap.RIGHT_REAR_MOTOR);
     motorLF = new TalonSRX(RobotMap.LEFT_FRONT_MOTOR);
     motorLR = new TalonSRX(RobotMap.LEFT_REAR_MOTOR);
+  }
+
+  public static synchronized DriveTrain getInstance() {
+    if(instance == null){
+      instance = new DriveTrain();
+    }
+    return instance;
   }
 
   public void setPower(double leftPower, double rightPower) {
