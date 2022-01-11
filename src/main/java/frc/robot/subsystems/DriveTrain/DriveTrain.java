@@ -20,6 +20,8 @@ public class DriveTrain extends SubsystemBase {
     motorRR = new TalonSRX(RobotMap.RIGHT_REAR_MOTOR);
     motorLF = new TalonSRX(RobotMap.LEFT_FRONT_MOTOR);
     motorLR = new TalonSRX(RobotMap.LEFT_REAR_MOTOR);
+    motorLF.setInverted(true);
+    motorLR.setInverted(true);
   }
 
   public static synchronized DriveTrain getInstance() {
