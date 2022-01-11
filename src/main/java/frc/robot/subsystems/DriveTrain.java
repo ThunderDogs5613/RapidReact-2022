@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import frc.robot.RobotMap;
 
 public class DriveTrain extends SubsystemBase {
 
@@ -14,10 +15,10 @@ public class DriveTrain extends SubsystemBase {
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
-    motorRF = new TalonSRX(0);
-    motorRR = new TalonSRX(1);
-    motorLF = new TalonSRX(2);
-    motorLR = new TalonSRX(3);
+    motorRF = new TalonSRX(RobotMap.RIGHT_FRONT_MOTOR);
+    motorRR = new TalonSRX(RobotMap.RIGHT_REAR_MOTOR);
+    motorLF = new TalonSRX(RobotMap.LEFT_FRONT_MOTOR);
+    motorLR = new TalonSRX(RobotMap.LEFT_REAR_MOTOR);
   }
 
   public void setPower(double leftPower, double rightPower) {
