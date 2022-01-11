@@ -13,7 +13,7 @@ public class DriveTrain extends SubsystemBase {
 
   private TalonSRX motorRF, motorRR, motorLF, motorLR;
 
-  /** Creates a new DriveTrain. */
+  
   public DriveTrain() {
     motorRF = new TalonSRX(RobotMap.RIGHT_FRONT_MOTOR);
     motorRR = new TalonSRX(RobotMap.RIGHT_REAR_MOTOR);
