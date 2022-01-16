@@ -7,21 +7,21 @@ package frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.RobotMap;
 
 public class DriveTrain extends SubsystemBase {
 
-  private TalonSRX motorRF, motorRR, motorLF, motorLR;
+  private CANSparkMax motorRF, motorRR, motorLF, motorLR;
 
   private static DriveTrain instance;
 
   private DriveTrain() {
-    motorRF = new TalonSRX(RobotMap.RIGHT_FRONT_MOTOR);
-    motorRR = new TalonSRX(RobotMap.RIGHT_REAR_MOTOR);
-    motorLF = new TalonSRX(RobotMap.LEFT_FRONT_MOTOR);
-    motorLR = new TalonSRX(RobotMap.LEFT_REAR_MOTOR);
+    motorRF = new CANSparkMax(RobotMap.RIGHT_FRONT_MOTOR, MotorType.kBrushless);
+    motorRR = new CANSparkMax(RobotMap.RIGHT_REAR_MOTOR, MotorType.kBrushless);
+    motorLF = new CANSparkMax(RobotMap.LEFT_FRONT_MOTOR, MotorType.kBrushless);
+    motorLR = new CANSparkMax(RobotMap.LEFT_REAR_MOTOR, MotorType.kBrushless);
     motorLF.setInverted(true);
     motorLR.setInverted(true);
   }
@@ -47,10 +47,10 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void setPower(double leftPower, double rightPower) {
-    motorRF.set(ControlMode.PercentOutput, rightPower);
-    motorRR.set(ControlMode.PercentOutput, rightPower);
-    motorLF.set(ControlMode.PercentOutput, leftPower);
-    motorLR.set(ControlMode.PercentOutput, leftPower);
+    motorRF.set(rightPower);
+    motorRR.set(rightPower);
+    motorLF.set(leftPower);
+    motorLR.set(leftPower);
   }
 
   @Override
