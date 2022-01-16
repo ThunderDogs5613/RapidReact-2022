@@ -7,6 +7,7 @@ package frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -48,6 +49,8 @@ public class DriveTrain extends SubsystemBase {
     double leftPower = Speeds.left;
     double rightPower = Speeds.right;
     setPower(leftPower, rightPower);
+    PrintCommand(String throttle);
+    PrintCommand(String rotation);
   }
 
   public void setPower(double leftPower, double rightPower) {
