@@ -7,8 +7,10 @@ package frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import frc.robot.RobotMap;
 
 
@@ -42,7 +44,7 @@ public class DriveTrain extends SubsystemBase {
   }
   
   public void setCurvature(double throttle, double rotation, boolean turnInPlace) {
-    WheelSpeeds Speeds = DifferentialDrive.curvatureDriveIK(throttle, rotation, turnInPlace);
+    WheelSpeeds Speeds = DifferentialDrive.curvatureDriveIK(throttle, -rotation, turnInPlace);
     double leftPower = Speeds.left;
     double rightPower = Speeds.right;
     setPower(leftPower, rightPower);
