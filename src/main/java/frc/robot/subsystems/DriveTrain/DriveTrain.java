@@ -4,10 +4,9 @@
 
 package frc.robot.subsystems.DriveTrain;
 
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
+//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+//import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -39,19 +38,20 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void setArcade(double throttle, double rotation) {
-    double leftPower = throttle + rotation;
-    double rightPower = throttle - rotation;
+    rotation = rotation * 0.3;
+    double leftPower = throttle - rotation;
+    double rightPower = throttle + rotation;
     setPower(leftPower, rightPower);
   }
   
-  public void setCurvature(double throttle, double rotation, boolean turnInPlace) {
-    WheelSpeeds Speeds = DifferentialDrive.curvatureDriveIK(throttle, -rotation, turnInPlace);
-    double leftPower = Speeds.left;
-    double rightPower = Speeds.right;
+  /* void setCurvature(double throttle, double rotation, boolean rotationInPlace) {
+    Wheelthrottles throttles = DifferentialDrive.curvatureDriveIK(throttle, -rotation, rotationInPlace);
+    double leftPower = throttles.left;
+    double rightPower = throttles.right;
     setPower(leftPower, rightPower);
     PrintCommand(String throttle);
     PrintCommand(String rotation);
-  }
+  }*/
 
   public void setPower(double leftPower, double rightPower) {
     motorRF.set(rightPower);
