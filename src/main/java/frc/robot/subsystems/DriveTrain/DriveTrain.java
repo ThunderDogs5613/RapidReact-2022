@@ -4,8 +4,8 @@
 
 package frc.robot.subsystems.DriveTrain;
 
-//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-//import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
@@ -44,14 +44,12 @@ public class DriveTrain extends SubsystemBase {
     setPower(leftPower, rightPower);
   }
   
-  /* void setCurvature(double throttle, double rotation, boolean rotationInPlace) {
-    Wheelthrottles throttles = DifferentialDrive.curvatureDriveIK(throttle, -rotation, rotationInPlace);
-    double leftPower = throttles.left;
-    double rightPower = throttles.right;
+  void setCurvature(double throttle, double rotation, boolean rotationInPlace) {
+    WheelSpeeds speeds = DifferentialDrive.curvatureDriveIK(throttle, rotation, rotationInPlace);
+    double leftPower = speeds.left;
+    double rightPower = speeds.right;
     setPower(leftPower, rightPower);
-    PrintCommand(String throttle);
-    PrintCommand(String rotation);
-  }*/
+  }
 
   public void setPower(double leftPower, double rightPower) {
     motorRF.set(rightPower);
