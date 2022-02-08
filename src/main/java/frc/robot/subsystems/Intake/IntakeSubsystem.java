@@ -5,38 +5,47 @@
 package frc.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotMap;
+
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.Encoder;
 
 public class IntakeSubsystem extends CommandBase {
   
-  private SparkMax IntakeRoller;
-  private TalonSRX IntakeArm;
+  private CANSparkMax intakeRoller;
+  private TalonSRX intakeArm;
+  private Encoder intakeArmEncoder;
   
   private intakeStates currentState;
 
-  public enum intakeStates() {
-    High-Idle,
-    High-Out,
-    Low-Idle,
-    Low-In,
-    Low-Out;
+  public enum intakeStates {
+    HighIdle,
+    HighOut,
+    LowIdle,
+    LowIn,
+    LowOut,
   }
 
   public static IntakeSubsystem instance;
 
-  public static synchronized IntakeSubsystem getInstance() {
+  public IntakeSubsystem() {
+    intakeRoller = new CANSparkMax(RobotMap.INTAKE_ROLLER, MotorType.kBrushless);
+    intakeArm = new TalonSRX(RobotMap.INTAKE_ARM);
+    intakeArmEncoder = new Encoder(RobotMap.INTAKE_ENCODER_1, RobotMap.INTAKE_ENCODER_2);
+  }
+
+  public static IntakeSubsystem getInstance() {
     if(instance == null){
       instance = new IntakeSubsystem();
     }
     return instance;
   }
 
-  /** Creates a new IntakeSubsystem. */
-  public IntakeSubsystem() {
-    // Use addRequirements() here to declare subsystem dependencies.
-  }
-
   public void setIntakePower(double power){
-    intakeRoller.set(power, MotorType.kBrushless);
+    intakeRoller.set(power);
   }
 
   public void setIntakeArmPower(double power){
@@ -44,9 +53,66 @@ public class IntakeSubsystem extends CommandBase {
   }
 
   public void checkHeight() {
-
+    intakeArmEncoder.get();
   }
 
+  public void raiseArm() {
+    while (intakeArmEncoder.get() < 0) {
+      setIntakeArmPower(.50);
+    }
+    setIntakeArmPower(0);
+  }
+
+  public void lowerArm() {
+    while (intakeArmEncoder.get() >= 5) {
+      setIntakeArmPower(-.25);
+    }
+    setIntakeArmPower(0);
+  }
+
+  public void setState(intakeStates newState) {
+    currentState = newState;
+    
+    switch (currentState) {
+      
+      case LowIdle:
+      setIntakePower(0);
+      if (intakeArmEncoder.get() > 0) {
+        lowerArm();
+      }
+      break;
+
+      case LowOut:
+      setIntakePower(0);
+      if (intakeArmEncoder.get() > 0) {
+        lowerArm();
+      }
+      setIntakePower(0.5);
+      break;
+
+      case LowIn:
+      setIntakePower(0);
+      if (intakeArmEncoder.get() > 0) {
+        lowerArm();
+      }
+      setIntakePower(-0.5);
+      break;
+
+      case HighIdle:
+      setIntakePower(0);
+      if (intakeArmEncoder.get() < 0) {
+        raiseArm();
+      }
+      break;
+
+      case HighOut:
+      setIntakePower(0);
+      if (intakeArmEncoder.get() < 5) {
+        raiseArm();
+      }
+      setIntakePower(0.5);
+      }
+  }
 
 
   // Called when the command is initially scheduled.
