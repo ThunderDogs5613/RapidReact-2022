@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import javax.xml.namespace.QName;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -21,6 +24,9 @@ public class IntakeSubsystem extends CommandBase {
   
   private intakeStates currentState;
 
+  private int COUNTS_PER_REVOLUTION = 16;
+
+  // list of potential states
   public enum intakeStates {
     HighIdle,
     HighOut,
@@ -31,12 +37,14 @@ public class IntakeSubsystem extends CommandBase {
 
   public static IntakeSubsystem instance;
 
+  // Define the creation of a new IntakeSubsystem
   public IntakeSubsystem() {
     intakeRoller = new CANSparkMax(RobotMap.INTAKE_ROLLER, MotorType.kBrushless);
     intakeArm = new TalonSRX(RobotMap.INTAKE_ARM);
     intakeArmEncoder = new Encoder(RobotMap.INTAKE_ENCODER_1, RobotMap.INTAKE_ENCODER_2);
   }
 
+  // Create a new IntakeSubsystem instance if there is not one already
   public static IntakeSubsystem getInstance() {
     if(instance == null){
       instance = new IntakeSubsystem();
@@ -44,18 +52,17 @@ public class IntakeSubsystem extends CommandBase {
     return instance;
   }
 
+  // Set the intake power to a value between -1 and 1.
   public void setIntakePower(double power){
     intakeRoller.set(power);
   }
 
+  // Set the intake arm power to a value between -1 and 1.
   public void setIntakeArmPower(double power){
     intakeArm.set(ControlMode.PercentOutput, power);
   }
 
-  public void checkHeight() {
-    intakeArmEncoder.get();
-  }
-
+  // Raises the arm until it reaches the up position.
   public void raiseArm() {
     while (intakeArmEncoder.get() < 0) {
       setIntakeArmPower(.50);
@@ -63,6 +70,7 @@ public class IntakeSubsystem extends CommandBase {
     setIntakeArmPower(0);
   }
 
+  // Lowers the arm until it reaches the down position.
   public void lowerArm() {
     while (intakeArmEncoder.get() >= 5) {
       setIntakeArmPower(-.25);
@@ -70,11 +78,13 @@ public class IntakeSubsystem extends CommandBase {
     setIntakeArmPower(0);
   }
 
+  // Handles state changing.
   public void setState(intakeStates newState) {
     currentState = newState;
     
     switch (currentState) {
       
+      // If state is low idle, set intake to 0 and lower arm if not already lowered.
       case LowIdle:
       setIntakePower(0);
       if (intakeArmEncoder.get() > 0) {
@@ -82,6 +92,7 @@ public class IntakeSubsystem extends CommandBase {
       }
       break;
 
+      // If state is low out, set intake to .5 and lower arm if not already lowered.
       case LowOut:
       setIntakePower(0);
       if (intakeArmEncoder.get() > 0) {
@@ -89,7 +100,8 @@ public class IntakeSubsystem extends CommandBase {
       }
       setIntakePower(0.5);
       break;
-
+      
+      // If state is low in, set intake to -0.5 and lower arm if not already lowered.
       case LowIn:
       setIntakePower(0);
       if (intakeArmEncoder.get() > 0) {
@@ -98,13 +110,15 @@ public class IntakeSubsystem extends CommandBase {
       setIntakePower(-0.5);
       break;
 
+      // If state is high idle, set intake to 0 and raise arm if not already raised.
       case HighIdle:
       setIntakePower(0);
       if (intakeArmEncoder.get() < 0) {
         raiseArm();
       }
       break;
-
+      
+      // If state is high out, set intake to 0.5 and raise arm if not already raised.
       case HighOut:
       setIntakePower(0);
       if (intakeArmEncoder.get() < 5) {
