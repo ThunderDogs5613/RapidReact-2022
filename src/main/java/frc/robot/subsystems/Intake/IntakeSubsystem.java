@@ -4,19 +4,17 @@
 
 package frc.robot.subsystems.Intake;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
-import javax.xml.namespace.QName;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Encoder;
 
-public class IntakeSubsystem extends CommandBase {
+public class IntakeSubsystem extends SubsystemBase {
   
   private CANSparkMax intakeRoller;
   private TalonSRX intakeArm;
@@ -24,7 +22,6 @@ public class IntakeSubsystem extends CommandBase {
   
   private intakeStates currentState;
 
-  private int COUNTS_PER_REVOLUTION = 42;
 
   // list of potential states
   public enum intakeStates {
@@ -45,7 +42,7 @@ public class IntakeSubsystem extends CommandBase {
   }
 
   // Create a new IntakeSubsystem instance if there is not one already
-  public static IntakeSubsystem getInstance() {
+  public static synchronized IntakeSubsystem getInstance() {
     if(instance == null){
       instance = new IntakeSubsystem();
     }

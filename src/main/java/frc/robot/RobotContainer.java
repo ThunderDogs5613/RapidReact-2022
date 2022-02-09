@@ -10,6 +10,8 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.DriveTrain.DriveTrain;
 import frc.robot.subsystems.DriveTrain.OpenLoopState;
+import frc.robot.subsystems.Intake.IntakeControlCommand;
+import frc.robot.subsystems.Intake.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -24,6 +26,8 @@ public class RobotContainer {
 
   private final DriveTrain driveTrain = DriveTrain.getInstance();
 
+  private final IntakeSubsystem intakeSubsystem =  IntakeSubsystem.getInstance();
+
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   public RobotContainer() {
@@ -33,6 +37,7 @@ public class RobotContainer {
 
   private void setAllDefaultCommands() {
     CommandScheduler.getInstance().setDefaultCommand(driveTrain, new OpenLoopState());
+    CommandScheduler.getInstance().setDefaultCommand(intakeSubsystem, new IntakeControlCommand());
   }
 
   private void configureButtonBindings() {}
