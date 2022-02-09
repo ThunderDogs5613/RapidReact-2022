@@ -24,7 +24,7 @@ public class IntakeSubsystem extends CommandBase {
   
   private intakeStates currentState;
 
-  private int COUNTS_PER_REVOLUTION = 16;
+  private int COUNTS_PER_REVOLUTION = 42;
 
   // list of potential states
   public enum intakeStates {
@@ -72,8 +72,8 @@ public class IntakeSubsystem extends CommandBase {
 
   // Lowers the arm until it reaches the down position.
   public void lowerArm() {
-    while (intakeArmEncoder.get() >= 5) {
-      setIntakeArmPower(-.25);
+    while (intakeArmEncoder.get() >= 203) {
+      setIntakeArmPower(-.50);
     }
     setIntakeArmPower(0);
   }
@@ -87,7 +87,7 @@ public class IntakeSubsystem extends CommandBase {
       // If state is low idle, set intake to 0 and lower arm if not already lowered.
       case LowIdle:
       setIntakePower(0);
-      if (intakeArmEncoder.get() > 0) {
+      if (intakeArmEncoder.get() >= 203) {
         lowerArm();
       }
       break;
@@ -95,7 +95,7 @@ public class IntakeSubsystem extends CommandBase {
       // If state is low out, set intake to .5 and lower arm if not already lowered.
       case LowOut:
       setIntakePower(0);
-      if (intakeArmEncoder.get() > 0) {
+      if (intakeArmEncoder.get() >= 203) {
         lowerArm();
       }
       setIntakePower(0.5);
@@ -104,7 +104,7 @@ public class IntakeSubsystem extends CommandBase {
       // If state is low in, set intake to -0.5 and lower arm if not already lowered.
       case LowIn:
       setIntakePower(0);
-      if (intakeArmEncoder.get() > 0) {
+      if (intakeArmEncoder.get() >= 203) {
         lowerArm();
       }
       setIntakePower(-0.5);
@@ -113,7 +113,7 @@ public class IntakeSubsystem extends CommandBase {
       // If state is high idle, set intake to 0 and raise arm if not already raised.
       case HighIdle:
       setIntakePower(0);
-      if (intakeArmEncoder.get() < 0) {
+      if (intakeArmEncoder.get() <= 0) {
         raiseArm();
       }
       break;
@@ -121,7 +121,7 @@ public class IntakeSubsystem extends CommandBase {
       // If state is high out, set intake to 0.5 and raise arm if not already raised.
       case HighOut:
       setIntakePower(0);
-      if (intakeArmEncoder.get() < 5) {
+      if (intakeArmEncoder.get() <= 0) {
         raiseArm();
       }
       setIntakePower(0.5);
