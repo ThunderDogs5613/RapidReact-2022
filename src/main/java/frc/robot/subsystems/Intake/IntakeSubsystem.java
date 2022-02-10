@@ -69,7 +69,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   // Lowers the arm until it reaches the down position.
   public void lowerArm() {
-    while (intakeArmEncoder.get() >= 203) {
+    while (intakeArmEncoder.get() >= 3045) {
       setIntakeArmPower(-.50);
     }
     setIntakeArmPower(0);
@@ -84,7 +84,7 @@ public class IntakeSubsystem extends SubsystemBase {
       // If state is low idle, set intake to 0 and lower arm if not already lowered.
       case LowIdle:
       setIntakePower(0);
-      if (intakeArmEncoder.get() >= 203) {
+      if (intakeArmEncoder.get() >= 3045) {
         lowerArm();
       }
       break;
@@ -92,7 +92,7 @@ public class IntakeSubsystem extends SubsystemBase {
       // If state is low out, set intake to .5 and lower arm if not already lowered.
       case LowOut:
       setIntakePower(0);
-      if (intakeArmEncoder.get() >= 203) {
+      if (intakeArmEncoder.get() >= 3045) {
         lowerArm();
       }
       setIntakePower(0.5);
@@ -101,7 +101,7 @@ public class IntakeSubsystem extends SubsystemBase {
       // If state is low in, set intake to -0.5 and lower arm if not already lowered.
       case LowIn:
       setIntakePower(0);
-      if (intakeArmEncoder.get() >= 203) {
+      if (intakeArmEncoder.get() >= 3045) {
         lowerArm();
       }
       setIntakePower(-0.5);
