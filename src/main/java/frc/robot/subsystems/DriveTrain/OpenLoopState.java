@@ -20,7 +20,6 @@ public class OpenLoopState extends CommandBase {
     if (rotation < .2) {
       turnInPlace = true;
     }
-    //DriveTrain.getInstance().setCurvature(throttle, rotation, turnInPlace);
 
     DriveTrain.getInstance().setCurvature(throttle, rotation, turnInPlace);
   }
