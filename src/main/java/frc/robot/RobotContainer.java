@@ -6,8 +6,13 @@ package frc.robot;
 
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Arm.ArmSubsystem;
+import frc.robot.subsystems.Arm.States.LowPID;
+import frc.robot.subsystems.Arm.States.ManualLower;
+import frc.robot.subsystems.Arm.States.ManualRaise;
 import frc.robot.subsystems.CargoManipulator.CargoManipulatorSubsystem;
 import frc.robot.subsystems.CargoManipulator.States.IdleState;
+import frc.robot.subsystems.CargoManipulator.States.YeetState;
 import frc.robot.subsystems.CargoManipulator.States.YoinkState;
 import frc.robot.subsystems.Drivetrain.DrivetrainSubsystem;
 import frc.robot.subsystems.Drivetrain.States.OpenLoopState;
@@ -29,6 +34,7 @@ public class RobotContainer {
 
   private final DrivetrainSubsystem drivetrain = DrivetrainSubsystem.getInstance();
   private final CargoManipulatorSubsystem cargoManipulator = CargoManipulatorSubsystem.getInstance();
+  private final ArmSubsystem arm = ArmSubsystem.getInstance();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
@@ -40,10 +46,14 @@ public class RobotContainer {
   private void setAllDefaultCommands() {
     CommandScheduler.getInstance().setDefaultCommand(drivetrain, new OpenLoopState());
     CommandScheduler.getInstance().setDefaultCommand(cargoManipulator,new IdleState());
+    CommandScheduler.getInstance().setDefaultCommand(arm, new LowPID());
   }
 
   private void configureButtonBindings() {
-    new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.TRIGGER).whileActiveOnce(new YoinkState());
+    new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.TRIGGER).whileHeld(new YoinkState());
+    new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B6).whileHeld(new ManualRaise());
+    new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B4).whileHeld(new ManualLower());
+
 
   }
 
