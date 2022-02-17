@@ -15,7 +15,7 @@ package frc.robot;
 public final class Constants {
 
     public final class CargoManipulatorConstants{
-        public static final double cargoManipulatorYoinkPower = 1;
-        public static final double cargoManipulatorYeetPower = -1;
+        public static final double YoinkPower = 1;
+        public static final double YeetPower = -1;
     }
 }

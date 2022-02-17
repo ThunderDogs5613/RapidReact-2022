@@ -4,17 +4,17 @@ import frc.robot.subsystems.CargoManipulator.CargoManipulatorSubsystem;
 import frc.robot.Constants;
 
 
-public class YoinkState extends CommandBase {
+public class YeetState extends CommandBase {
     
     private CargoManipulatorSubsystem intake = CargoManipulatorSubsystem.getInstance();
 
-    public YoinkState() {
+    public YeetState() {
         addRequirements(intake);
     }
 
     @Override
     public void initialize() {
-        intake.setSpeed(Constants.CargoManipulatorConstants.YoinkPower);
+        intake.setSpeed(Constants.CargoManipulatorConstants.YeetPower);
     }
 
 }
