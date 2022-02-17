@@ -22,10 +22,10 @@ public class DriveTrain extends SubsystemBase {
   private static DriveTrain instance;
 
   private DriveTrain() {
-    motorRF = new CANSparkMax(RobotMap.RIGHT_FRONT_MOTOR, MotorType.kBrushless);
-    motorRR = new CANSparkMax(RobotMap.RIGHT_REAR_MOTOR, MotorType.kBrushless);
-    motorLF = new CANSparkMax(RobotMap.LEFT_FRONT_MOTOR, MotorType.kBrushless);
-    motorLR = new CANSparkMax(RobotMap.LEFT_REAR_MOTOR, MotorType.kBrushless);
+    motorRF = new CANSparkMax(RobotMap.RIGHT_FRONT_MOTOR_ID, MotorType.kBrushless);
+    motorRR = new CANSparkMax(RobotMap.RIGHT_REAR_MOTOR_ID, MotorType.kBrushless);
+    motorLF = new CANSparkMax(RobotMap.LEFT_FRONT_MOTOR_ID, MotorType.kBrushless);
+    motorLR = new CANSparkMax(RobotMap.LEFT_REAR_MOTOR_ID, MotorType.kBrushless);
     motorLF.setInverted(true);
     motorLR.setInverted(true);
   }

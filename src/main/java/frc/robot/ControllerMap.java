@@ -4,21 +4,21 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class ControllerMap {
 
-    private static Joystick driverController;
-    private static Joystick operatorController;
+    private static Joystick driveStick;
+    private static Joystick buttonPad;
 
     public static Joystick getDriveStick(){
-        if (driverController == null){
-            driverController = new Joystick(RobotMap.DRIVE_STICK_ID);
+        if (driveStick == null){
+            driveStick = new Joystick(RobotMap.DRIVE_STICK_ID);
         }
-        return driverController;
+        return driveStick;
     }
     
     public static Joystick getButtonPad(){
-        if (operatorController == null){
-            operatorController = new Joystick(RobotMap.BUTTON_PAD_ID);
+        if (buttonPad == null){
+            buttonPad = new Joystick(RobotMap.BUTTON_PAD_ID);
         }
-        return operatorController;
+        return buttonPad;
     }
 
     public static class Logitech_Controller{
