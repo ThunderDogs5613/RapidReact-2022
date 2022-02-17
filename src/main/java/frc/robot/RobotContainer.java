@@ -30,22 +30,27 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final DrivetrainSubsystem drivetrain = DrivetrainSubsystem.getInstance();
-  private final CargoManipulatorSubsystem cargoManipulator = CargoManipulatorSubsystem.getInstance();
-  private final ArmSubsystem arm = ArmSubsystem.getInstance();
+  DrivetrainSubsystem drive;
+  CargoManipulatorSubsystem cM;
+  ArmSubsystem arm;
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   public RobotContainer() {
+    initalizeSubsystems();
     configureButtonBindings();
     setAllDefaultCommands();
   }
 
+  private void initalizeSubsystems() {
+    drive = DrivetrainSubsystem.getInstance();
+    cM = CargoManipulatorSubsystem.getInstance();
+    arm = ArmSubsystem.getInstance();
+  }
+
   private void setAllDefaultCommands() {
-    CommandScheduler.getInstance().setDefaultCommand(drivetrain, new OpenLoopState());
-    CommandScheduler.getInstance().setDefaultCommand(cargoManipulator,new IdleState());
+    CommandScheduler.getInstance().setDefaultCommand(drive, new OpenLoopState());
+    CommandScheduler.getInstance().setDefaultCommand(cM,new IdleState());
     CommandScheduler.getInstance().setDefaultCommand(arm, new LowPID());
   }
 
@@ -59,7 +64,7 @@ public class RobotContainer {
   }
 
   
-  public Command getAutonomousCommand() {
+  /*public Command getAutonomousCommand() {
     return m_autoCommand;
-  }
+  }*/
 }
