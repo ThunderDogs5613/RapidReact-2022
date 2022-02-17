@@ -9,8 +9,8 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.CargoManipulator.CargoManipulatorSubsystem;
 import frc.robot.subsystems.CargoManipulator.States.IdleState;
 import frc.robot.subsystems.CargoManipulator.States.YoinkState;
-import frc.robot.subsystems.DriveTrain.DriveTrain;
-import frc.robot.subsystems.DriveTrain.OpenLoopState;
+import frc.robot.subsystems.Drivetrain.DrivetrainSubsystem;
+import frc.robot.subsystems.Drivetrain.States.OpenLoopState;
 import frc.robot.ControllerMap.Logitech_Controller;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final DriveTrain driveTrain = DriveTrain.getInstance();
+  private final DrivetrainSubsystem drivetrain = DrivetrainSubsystem.getInstance();
   private final CargoManipulatorSubsystem cargoManipulator = CargoManipulatorSubsystem.getInstance();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
@@ -39,7 +39,7 @@ public class RobotContainer {
   }
 
   private void setAllDefaultCommands() {
-    CommandScheduler.getInstance().setDefaultCommand(driveTrain, new OpenLoopState());
+    CommandScheduler.getInstance().setDefaultCommand(drivetrain, new OpenLoopState());
     CommandScheduler.getInstance().setDefaultCommand(cargoManipulator,new IdleState());
   }
 

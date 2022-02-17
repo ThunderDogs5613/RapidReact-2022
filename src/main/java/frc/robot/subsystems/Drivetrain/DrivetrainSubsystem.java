@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems.DriveTrain;
+package frc.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
@@ -15,13 +15,13 @@ import frc.robot.RobotMap;
 
 
 
-public class DriveTrain extends SubsystemBase {
+public class DrivetrainSubsystem extends SubsystemBase {
 
   private CANSparkMax motorRF, motorRR, motorLF, motorLR;
 
-  private static DriveTrain instance;
+  private static DrivetrainSubsystem instance;
 
-  private DriveTrain() {
+  private DrivetrainSubsystem() {
     motorRF = new CANSparkMax(RobotMap.RIGHT_FRONT_MOTOR_ID, MotorType.kBrushless);
     motorRR = new CANSparkMax(RobotMap.RIGHT_REAR_MOTOR_ID, MotorType.kBrushless);
     motorLF = new CANSparkMax(RobotMap.LEFT_FRONT_MOTOR_ID, MotorType.kBrushless);
@@ -30,9 +30,9 @@ public class DriveTrain extends SubsystemBase {
     motorLR.setInverted(true);
   }
 
-  public static synchronized DriveTrain getInstance() {
+  public static synchronized DrivetrainSubsystem getInstance() {
     if(instance == null){
-      instance = new DriveTrain();
+      instance = new DrivetrainSubsystem();
     }
     return instance;
   }
