@@ -35,6 +35,8 @@ public class RobotContainer {
   CargoManipulatorSubsystem cM;
   ArmSubsystem arm;
 
+  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();  //review this line when making real autonomous mode(s)
+  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);  //review this line when making real autonomous mode(s)
 
   public RobotContainer() {
     initalizeSubsystems();
@@ -46,6 +48,8 @@ public class RobotContainer {
     drive = DrivetrainSubsystem.getInstance();
     cM = CargoManipulatorSubsystem.getInstance();
     arm = ArmSubsystem.getInstance();
+
+
   }
 
   private void setAllDefaultCommands() {
@@ -64,7 +68,7 @@ public class RobotContainer {
   }
 
   
-  /*public Command getAutonomousCommand() {
+  public Command getAutonomousCommand() {
     return m_autoCommand;
-  }*/
+  }
 }
