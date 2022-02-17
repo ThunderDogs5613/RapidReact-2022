@@ -19,4 +19,9 @@ public final class Constants {
         public static final double YeetPower = -1;
         public static final double IdlePower = 0;
     }
+
+    public final class ArmConstants{
+        public static final double RaisePower = .3;
+        public static final double LowerPower = -.2;
+    }
 }
