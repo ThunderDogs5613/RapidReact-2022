@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.CargoManipulator.CargoManipulatorSubsystem;
+import frc.robot.subsystems.CargoManipulator.States.IdleState;
 import frc.robot.subsystems.CargoManipulator.States.YoinkState;
 import frc.robot.subsystems.DriveTrain.DriveTrain;
 import frc.robot.subsystems.DriveTrain.OpenLoopState;
@@ -28,6 +29,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private final DriveTrain driveTrain = DriveTrain.getInstance();
+  private final CargoManipulatorSubsystem cargoManipulator = CargoManipulatorSubsystem.getInstance();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
@@ -38,6 +40,7 @@ public class RobotContainer {
 
   private void setAllDefaultCommands() {
     CommandScheduler.getInstance().setDefaultCommand(driveTrain, new OpenLoopState());
+    CommandScheduler.getInstance().setDefaultCommand(cargoManipulator,new IdleState());
   }
 
   private void configureButtonBindings() {

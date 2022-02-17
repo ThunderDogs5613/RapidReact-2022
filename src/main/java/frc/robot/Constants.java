@@ -17,5 +17,6 @@ public final class Constants {
     public final class CargoManipulatorConstants{
         public static final double YoinkPower = 1;
         public static final double YeetPower = -1;
+        public static final double IdlePower = 0;
     }
 }
