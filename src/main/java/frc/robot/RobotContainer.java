@@ -7,6 +7,8 @@ package frc.robot;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Arm.ArmSubsystem;
+import frc.robot.subsystems.Arm.States.HighPID;
+import frc.robot.subsystems.Arm.States.HoldPosition;
 import frc.robot.subsystems.Arm.States.LowPID;
 import frc.robot.subsystems.Arm.States.ManualLower;
 import frc.robot.subsystems.Arm.States.ManualRaise;
@@ -55,7 +57,7 @@ public class RobotContainer {
   private void setAllDefaultCommands() {
     CommandScheduler.getInstance().setDefaultCommand(drive, new OpenLoopState());
     CommandScheduler.getInstance().setDefaultCommand(cM,new IdleState());
-    CommandScheduler.getInstance().setDefaultCommand(arm, new LowPID());
+    CommandScheduler.getInstance().setDefaultCommand(arm, new HoldPosition());
   }
 
   private void configureButtonBindings() {
@@ -63,7 +65,6 @@ public class RobotContainer {
     new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.THUMB).whileHeld(new YeetState());
     new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B6).whileHeld(new ManualRaise());
     new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B4).whileHeld(new ManualLower());
-
 
   }
 

@@ -5,6 +5,7 @@
 package frc.robot.subsystems.Arm.States;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.math.controller.PIDController;
 
 public class HighPID extends CommandBase {
   /** Creates a new TeleopControl. */

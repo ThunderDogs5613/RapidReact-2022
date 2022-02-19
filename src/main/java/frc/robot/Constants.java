@@ -15,13 +15,16 @@ package frc.robot;
 public final class Constants {
 
     public final class CargoManipulatorConstants{
-        public static final double YoinkPower = 1;
-        public static final double YeetPower = -1;
+        public static final double YoinkPower = -1;
+        public static final double YeetPower = 1;
         public static final double IdlePower = 0;
     }
 
     public final class ArmConstants{
-        public static final double RaisePower = .3;
-        public static final double LowerPower = -.2;
+        public static final double RaisePower = .35;
+        public static final double LowerPower = -.25;
+        public static final double kP = .2;
+        public static final double kI = .01;
+        public static final double kD = .07;
     }
 }
