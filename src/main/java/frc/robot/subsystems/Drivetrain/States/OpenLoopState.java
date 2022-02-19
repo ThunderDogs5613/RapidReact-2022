@@ -16,12 +16,8 @@ public class OpenLoopState extends CommandBase {
   public void execute() {
     double throttle = ControllerMap.getDriveStick().getRawAxis(ControllerMap.Logitech_Controller.Axis.STICK_Y);
     double rotation = ControllerMap.getDriveStick().getRawAxis(ControllerMap.Logitech_Controller.Axis.STICK_Z);
-    boolean turnInPlace = false;
-    if (Math.abs(throttle) < .1) {
-      turnInPlace = true;
-    }
 
-    DrivetrainSubsystem.getInstance().setCurvature(throttle, rotation, turnInPlace);
+    DrivetrainSubsystem.getInstance().setArcade(throttle, rotation);
   }
 
 

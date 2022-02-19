@@ -38,10 +38,18 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public void setArcade(double throttle, double rotation) {
-    rotation = (rotation * rotation * rotation) * 0.3;
-    throttle = throttle * throttle * throttle;
+    
+    if (throttle > .02) {  throttle = throttle * throttle; }
+    else if (throttle < -.02) { throttle = throttle * -throttle;  }
+    else {  throttle = 0;  }
+
+    if (rotation > .02) {  rotation = rotation * rotation * .2;  }
+    else if (rotation < - .02) {  rotation = rotation * -rotation * .2;  }
+    else {  rotation = 0; }
+    
     double leftPower = throttle - rotation;
     double rightPower = throttle + rotation;
+
     setPower(leftPower, rightPower);
   }
   
