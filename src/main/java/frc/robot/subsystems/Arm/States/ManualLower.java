@@ -19,7 +19,7 @@ public class ManualLower extends CommandBase {
 
     @Override
     public void initialize() {
-        armPivot.setSpeed(Constants.ArmConstants.LowerPower);
+        armPivot.setPower(Constants.ArmConstants.LowerPower);
     }
 
 }

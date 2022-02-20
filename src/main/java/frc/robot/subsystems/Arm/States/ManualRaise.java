@@ -19,7 +19,7 @@ public class ManualRaise extends CommandBase {
 
     @Override
     public void initialize() {
-        armPivot.setSpeed(Constants.ArmConstants.RaisePower);
+        armPivot.setPower(Constants.ArmConstants.RaisePower);
     }
 
 }
