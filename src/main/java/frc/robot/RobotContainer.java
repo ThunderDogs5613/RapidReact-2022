@@ -9,12 +9,14 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Arm.ArmSubsystem;
 import frc.robot.subsystems.Arm.States.ManualLower;
 import frc.robot.subsystems.Arm.States.ManualRaise;
+import frc.robot.subsystems.Arm.States.PositionState;
 import frc.robot.subsystems.CargoManipulator.CargoManipulatorSubsystem;
 import frc.robot.subsystems.CargoManipulator.States.IdleState;
 import frc.robot.subsystems.CargoManipulator.States.YeetState;
 import frc.robot.subsystems.CargoManipulator.States.YoinkState;
 import frc.robot.subsystems.Drivetrain.DrivetrainSubsystem;
 import frc.robot.subsystems.Drivetrain.States.OpenLoopState;
+import frc.robot.Constants.ArmConstants.ArmPosition;
 import frc.robot.ControllerMap.Logitech_Controller;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -61,7 +63,8 @@ public class RobotContainer {
     new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.THUMB).whileHeld(new YeetState());
     new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B6).whileHeld(new ManualRaise());
     new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B4).whileHeld(new ManualLower());
-
+    new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B3).whenPressed(new PositionState(ArmPosition.LOW));
+    new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B5).whenPressed(new PositionState(ArmPosition.HIGH));
   }
 
   
