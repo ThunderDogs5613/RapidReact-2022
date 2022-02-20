@@ -4,16 +4,26 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.DriveTrain.DriveTrain;
-import frc.robot.subsystems.DriveTrain.OpenLoopState;
-import frc.robot.subsystems.Intake.IntakeControlCommand;
-import frc.robot.subsystems.Intake.IntakeSubsystem;
+import frc.robot.subsystems.Arm.ArmSubsystem;
+import frc.robot.subsystems.Arm.States.HighPID;
+import frc.robot.subsystems.Arm.States.HoldPosition;
+import frc.robot.subsystems.Arm.States.LowPID;
+import frc.robot.subsystems.Arm.States.ManualLower;
+import frc.robot.subsystems.Arm.States.ManualRaise;
+import frc.robot.subsystems.CargoManipulator.CargoManipulatorSubsystem;
+import frc.robot.subsystems.CargoManipulator.States.IdleState;
+import frc.robot.subsystems.CargoManipulator.States.YeetState;
+import frc.robot.subsystems.CargoManipulator.States.YoinkState;
+import frc.robot.subsystems.Drivetrain.DrivetrainSubsystem;
+import frc.robot.subsystems.Drivetrain.States.OpenLoopState;
+import frc.robot.ControllerMap.Logitech_Controller;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -22,25 +32,41 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final DriveTrain driveTrain = DriveTrain.getInstance();
+  DrivetrainSubsystem drive;
+  CargoManipulatorSubsystem cM;
+  ArmSubsystem arm;
 
-  private final IntakeSubsystem intakeSubsystem =  IntakeSubsystem.getInstance();
-
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();  //review this line when making real autonomous mode(s)
+  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);  //review this line when making real autonomous mode(s)
 
   public RobotContainer() {
+    initalizeSubsystems();
     configureButtonBindings();
     setAllDefaultCommands();
   }
 
-  private void setAllDefaultCommands() {
-    CommandScheduler.getInstance().setDefaultCommand(driveTrain, new OpenLoopState());
-    CommandScheduler.getInstance().setDefaultCommand(intakeSubsystem, new IntakeControlCommand());
+  private void initalizeSubsystems() {
+    drive = DrivetrainSubsystem.getInstance();
+    cM = CargoManipulatorSubsystem.getInstance();
+    arm = ArmSubsystem.getInstance();
+
+
   }
 
-  private void configureButtonBindings() {}
+  private void setAllDefaultCommands() {
+    CommandScheduler.getInstance().setDefaultCommand(drive, new OpenLoopState());
+    CommandScheduler.getInstance().setDefaultCommand(cM,new IdleState());
+    CommandScheduler.getInstance().setDefaultCommand(arm, new HoldPosition());
+  }
+
+  private void configureButtonBindings() {
+    new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.TRIGGER).whileHeld(new YoinkState());
+    new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.THUMB).whileHeld(new YeetState());
+    new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B6).whileHeld(new ManualRaise());
+    new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B4).whileHeld(new ManualLower());
+
+  }
 
   
   public Command getAutonomousCommand() {

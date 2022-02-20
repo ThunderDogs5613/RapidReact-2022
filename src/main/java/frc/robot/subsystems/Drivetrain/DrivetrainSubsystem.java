@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems.DriveTrain;
+package frc.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
@@ -15,37 +15,45 @@ import frc.robot.RobotMap;
 
 
 
-public class DriveTrain extends SubsystemBase {
+public class DrivetrainSubsystem extends SubsystemBase {
 
   private CANSparkMax motorRF, motorRR, motorLF, motorLR;
 
-  private static DriveTrain instance;
+  private static DrivetrainSubsystem instance;
 
-  private DriveTrain() {
-    motorRF = new CANSparkMax(RobotMap.RIGHT_FRONT_MOTOR, MotorType.kBrushless);
-    motorRR = new CANSparkMax(RobotMap.RIGHT_REAR_MOTOR, MotorType.kBrushless);
-    motorLF = new CANSparkMax(RobotMap.LEFT_FRONT_MOTOR, MotorType.kBrushless);
-    motorLR = new CANSparkMax(RobotMap.LEFT_REAR_MOTOR, MotorType.kBrushless);
+  private DrivetrainSubsystem() {
+    motorRF = new CANSparkMax(RobotMap.RIGHT_FRONT_MOTOR_ID, MotorType.kBrushless);
+    motorRR = new CANSparkMax(RobotMap.RIGHT_REAR_MOTOR_ID, MotorType.kBrushless);
+    motorLF = new CANSparkMax(RobotMap.LEFT_FRONT_MOTOR_ID, MotorType.kBrushless);
+    motorLR = new CANSparkMax(RobotMap.LEFT_REAR_MOTOR_ID, MotorType.kBrushless);
     motorLF.setInverted(true);
     motorLR.setInverted(true);
   }
 
-  public static synchronized DriveTrain getInstance() {
+  public static synchronized DrivetrainSubsystem getInstance() {
     if(instance == null){
-      instance = new DriveTrain();
+      instance = new DrivetrainSubsystem();
     }
     return instance;
   }
 
   public void setArcade(double throttle, double rotation) {
-    rotation = (rotation * rotation * rotation) * 0.3;
-    throttle = throttle * throttle * throttle;
+    
+    if (throttle > .02) {  throttle = throttle * throttle; }
+    else if (throttle < -.02) { throttle = throttle * -throttle;  }
+    else {  throttle = 0;  }
+
+    if (rotation > .02) {  rotation = rotation * rotation * .2;  }
+    else if (rotation < - .02) {  rotation = rotation * -rotation * .2;  }
+    else {  rotation = 0; }
+    
     double leftPower = throttle - rotation;
     double rightPower = throttle + rotation;
+
     setPower(leftPower, rightPower);
   }
   
-  void setCurvature(double throttle, double rotation, boolean rotationInPlace) {
+  public void setCurvature(double throttle, double rotation, boolean rotationInPlace) {
     WheelSpeeds speeds = DifferentialDrive.curvatureDriveIK(throttle, -rotation, rotationInPlace);
     double leftPower = speeds.left;
     double rightPower = speeds.right;

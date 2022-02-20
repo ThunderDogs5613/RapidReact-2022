@@ -12,4 +12,19 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+
+    public final class CargoManipulatorConstants{
+        public static final double YoinkPower = -1;
+        public static final double YeetPower = 1;
+        public static final double IdlePower = 0;
+    }
+
+    public final class ArmConstants{
+        public static final double RaisePower = .35;
+        public static final double LowerPower = -.25;
+        public static final double kP = .2;
+        public static final double kI = .01;
+        public static final double kD = .07;
+    }
+}
