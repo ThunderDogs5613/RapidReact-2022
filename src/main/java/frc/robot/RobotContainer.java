@@ -7,9 +7,6 @@ package frc.robot;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Arm.ArmSubsystem;
-import frc.robot.subsystems.Arm.States.HighPID;
-import frc.robot.subsystems.Arm.States.HoldPosition;
-import frc.robot.subsystems.Arm.States.LowPID;
 import frc.robot.subsystems.Arm.States.ManualLower;
 import frc.robot.subsystems.Arm.States.ManualRaise;
 import frc.robot.subsystems.CargoManipulator.CargoManipulatorSubsystem;
@@ -57,7 +54,6 @@ public class RobotContainer {
   private void setAllDefaultCommands() {
     CommandScheduler.getInstance().setDefaultCommand(drive, new OpenLoopState());
     CommandScheduler.getInstance().setDefaultCommand(cM,new IdleState());
-    CommandScheduler.getInstance().setDefaultCommand(arm, new HoldPosition());
   }
 
   private void configureButtonBindings() {
