@@ -20,11 +20,16 @@ public final class Constants {
         public static final double IdlePower = 0;
     }
 
-    public final class ArmConstants{
+    public static final class ArmConstants{
         public static final double RaisePower = .35;
         public static final double LowerPower = -.25;
         public static final double kP = .2;
         public static final double kI = .01;
         public static final double kD = .07;
+        public static final double HighPosition = 100;
+        public static final double LowPosition = 10;
+        public enum ArmPosition{
+            LOW, HIGH
+        }
     }
 }

@@ -4,15 +4,19 @@
 
 package frc.robot.subsystems.Arm;
 
+import frc.robot.Constants;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 
 
 
-public class ArmSubsystem extends SubsystemBase {
+public class ArmSubsystem extends PIDSubsystem {
   
   private static ArmSubsystem instance;
 
@@ -20,8 +24,12 @@ public class ArmSubsystem extends SubsystemBase {
   private DutyCycleEncoder armEncoder;
 
   private ArmSubsystem() {
+
+    super(new PIDController(Constants.ArmConstants.kP, Constants.ArmConstants.kI, Constants.ArmConstants.kD));
+
     armPivot = new CANSparkMax(RobotMap.ARM_MOTOR_ID, MotorType.kBrushless);
     armEncoder = new DutyCycleEncoder(RobotMap.ARM_ENCODER_ID);
+
   }
 
   public static ArmSubsystem getInstance() {
@@ -31,14 +39,21 @@ public class ArmSubsystem extends SubsystemBase {
     return instance;
   }
 
-  public void setSpeed(double speed) {
-  armPivot.set(speed);
+  public void setPower(double power) {
+  armPivot.set(power);
   }
+
+  @Override
+  protected void useOutput(double output, double setpoint) {
+    setPower(output);
+  }
+
+  @Override
+  protected double getMeasurement() {
+    return getArmPosition();
+  } 
   
   public double getArmPosition() {
     return armEncoder.get();
   }
-
-  @Override
-  public void periodic() {} 
 }
