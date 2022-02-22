@@ -45,7 +45,7 @@ public class ArmSubsystem extends PIDSubsystem {
 
   @Override
   protected void useOutput(double output, double setpoint) {
-    setPower(output);
+    setPower(output * -1.5);
   }
 
   @Override
