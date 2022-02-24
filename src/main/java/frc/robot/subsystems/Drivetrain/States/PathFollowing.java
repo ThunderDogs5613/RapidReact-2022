@@ -32,6 +32,7 @@ public class PathFollowing extends CommandBase {
     double velocity = currentState.velocityMetersPerSecond;
     double angularVelocity = velocity * currentState.curvatureRadPerMeter;
     double acceleration = currentState.accelerationMetersPerSecondSq;
+    double angularAcceleration = acceleration * currentState.curvatureRadPerMeter;
 
     double leftVelocity = velocity - angularVelocity;
     double rightVelocity = velocity + angularVelocity;
