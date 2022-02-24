@@ -5,21 +5,23 @@
 package frc.robot.subsystems.Drivetrain.States;
 
 import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain.DrivetrainSubsystem;
 
 public class PathFollowing extends CommandBase {    
   
   private Trajectory pathToFollow;
+  private Timer trajectoryTimer;
 
-  public PathFollowing(Trajectory trajectoryToFollow) {
+  public PathFollowing(Trajectory pathToFollow) {
     addRequirements(DrivetrainSubsystem.getInstance());
     pathToFollow = this.pathToFollow;
     }
 
   @Override
   public void initialize() {
-
+      trajectoryTimer.start();
   }
 
   @Override
