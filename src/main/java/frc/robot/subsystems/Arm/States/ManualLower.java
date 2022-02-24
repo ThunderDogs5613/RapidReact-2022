@@ -22,4 +22,9 @@ public class ManualLower extends CommandBase {
         armPivot.setPower(Constants.ArmConstants.LowerPower);
     }
 
+    public void end() {
+        armPivot.setPower(0);
+        System.out.print("manual control should end");
+    }
+
 }
