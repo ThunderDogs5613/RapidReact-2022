@@ -4,8 +4,9 @@
 
 package frc.robot.subsystems.CargoManipulator;
 
-import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.RobotMap;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 

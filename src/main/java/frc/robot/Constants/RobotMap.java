@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.robot.Constants;
 
 public class RobotMap {
     public static final int DRIVE_STICK_ID = 0;

@@ -1,7 +1,7 @@
 package frc.robot.subsystems.Drivetrain.States;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.ControllerMap;
+import frc.robot.Constants.ControllerMap;
 import frc.robot.subsystems.Drivetrain.DrivetrainSubsystem;
 
 public class OpenLoopState extends CommandBase {

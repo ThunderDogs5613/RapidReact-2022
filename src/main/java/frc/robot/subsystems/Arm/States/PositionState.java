@@ -5,8 +5,8 @@
 package frc.robot.subsystems.Arm.States;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.Constants.ArmConstants.ArmPosition;
+import frc.robot.Constants.Constants;
+import frc.robot.Constants.Constants.ArmConstants.ArmPosition;
 import frc.robot.subsystems.Arm.ArmSubsystem;
 
 public class PositionState extends CommandBase {
