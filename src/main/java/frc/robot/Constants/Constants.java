@@ -32,4 +32,8 @@ public final class Constants {
             LOW, HIGH
         }
     }
+
+    public final class DrivetrainConstants{
+        public static final double RobotMaxSpeed = 11;
+    }
 }

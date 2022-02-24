@@ -28,9 +28,16 @@ public class PathFollowing extends CommandBase {
   public void execute() {
     double currentTime = trajectoryTimer.get();
     Trajectory.State currentState = pathToFollow.sample(currentTime);
+
     double velocity = currentState.velocityMetersPerSecond;
     double angularVelocity = velocity * currentState.curvatureRadPerMeter;
     double acceleration = currentState.accelerationMetersPerSecondSq;
+
+    double leftVelocity = velocity - angularVelocity;
+    double rightVelocity = velocity + angularVelocity;
+
+    //use until setSpeed method is added to DrivetrainSubsystem
+    DrivetrainSubsystem.getInstance().setPower(leftVelocity, rightVelocity); 
   }
 
   @Override
