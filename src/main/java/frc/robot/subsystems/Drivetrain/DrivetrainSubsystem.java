@@ -25,8 +25,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     motorRR = new CANSparkMax(RobotMap.RIGHT_REAR_MOTOR_ID, MotorType.kBrushless);
     motorLF = new CANSparkMax(RobotMap.LEFT_FRONT_MOTOR_ID, MotorType.kBrushless);
     motorLR = new CANSparkMax(RobotMap.LEFT_REAR_MOTOR_ID, MotorType.kBrushless);
-    motorLF.setInverted(true);
-    motorLR.setInverted(true);
+    motorRF.setInverted(true);
+    motorRR.setInverted(true);
   }
 
   public static synchronized DrivetrainSubsystem getInstance() {
@@ -38,16 +38,16 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public void setArcade(double throttle, double rotation) {
     
-    if (throttle > .02) {  throttle = throttle * throttle; }
-    else if (throttle < -.02) { throttle = throttle * -throttle;  }
+    if (throttle > .02) {  throttle = throttle * -throttle; }
+    else if (throttle < -.02) { throttle = throttle * throttle;  }
     else {  throttle = 0;  }
 
     if (rotation > .02) {  rotation = rotation * rotation * .15;  }
     else if (rotation < - .02) {  rotation = rotation * -rotation * .15;  }
     else {  rotation = 0; }
     
-    double leftPower = throttle - rotation;
-    double rightPower = throttle + rotation;
+    double leftPower = throttle + rotation;
+    double rightPower = throttle - rotation;
 
     setPower(leftPower, rightPower);
   }

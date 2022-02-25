@@ -9,4 +9,9 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 
-public class Trajectories {}
+public class Trajectories {
+    private static final List<Pose2d> TwoCargoPointList = List.of(FieldPositions.ORIGIN, 
+                                                                    FieldPositions.addRotation(FieldPositions.pointAtIntake(FieldPositions.TARMAC_ALLIANCE_CARGO_1), new Rotation2d()));
+
+    public static final Trajectory testTraj0 = TrajectoryGenerator.generateTrajectory(TwoCargoPointList, new TrajectoryConfig(10, 23).setReversed(true));
+}

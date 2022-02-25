@@ -5,6 +5,8 @@
 package frc.robot;
 
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.Autos.Collect2Cargo;
+import frc.robot.commands.Autos.ScoreAndDrive;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Arm.ArmSubsystem;
 import frc.robot.subsystems.Arm.States.ManualLower;
@@ -38,9 +40,6 @@ public class RobotContainer {
   CargoManipulatorSubsystem cM;
   ArmSubsystem arm;
 
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();  //review this line when making real autonomous mode(s)
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);  //review this line when making real autonomous mode(s)
-
   public RobotContainer() {
     initalizeSubsystems();
     configureButtonBindings();
@@ -72,6 +71,6 @@ public class RobotContainer {
 
   
   public Command getAutonomousCommand() {
-    return m_autoCommand;
+    return new Collect2Cargo();
   }
 }

@@ -13,8 +13,8 @@ public class ScoreAndDrive extends SequentialCommandGroup {
   public ScoreAndDrive() {
     
     addCommands(
-      new YeetState().withTimeout(2),
-      new DriveBackwards().withTimeout(2)
+      new YeetState().withTimeout(1),
+      new DriveBackwards().withTimeout(1)
     );
   }
 }

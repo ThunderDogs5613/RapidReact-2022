@@ -6,12 +6,15 @@ package frc.robot.commands.Autos;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.Constants;
+import frc.robot.Constants.FieldPositions;
+import frc.robot.Constants.Trajectories;
 import frc.robot.Constants.Constants.ArmConstants.ArmPosition;
 import frc.robot.subsystems.Arm.States.PositionState;
 import frc.robot.subsystems.CargoManipulator.States.IdleState;
 import frc.robot.subsystems.CargoManipulator.States.YeetState;
 import frc.robot.subsystems.CargoManipulator.States.YoinkState;
 import frc.robot.subsystems.Drivetrain.States.PathFollowing;
+import frc.robot.Constants.FieldPositions;
 
 
 public class Collect2Cargo extends SequentialCommandGroup {
@@ -20,17 +23,17 @@ public class Collect2Cargo extends SequentialCommandGroup {
  
     addCommands(
       race(
-        new PathFollowing(pathToFollow),  //first cargo to collect
+        new PathFollowing(Trajectories.testTraj0),  //first cargo to collect
         new PositionState(ArmPosition.LOW),
         new YoinkState()
-      ),
-      new PathFollowing(pathToFollow),  //second cargo to yoink
+      )
+      /*new PathFollowing(pathToFollow),  //second cargo to yoink
       race(
         new PathFollowing(pathToFollow),  //position to score
         new PositionState(ArmPosition.HIGH),
         new IdleState()
       ),
-      new YeetState()
+      new YeetState() */
 
 
     );

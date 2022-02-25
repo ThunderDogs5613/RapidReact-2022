@@ -16,7 +16,7 @@ public class DriveBackwards extends CommandBase {
 
   @Override
   public void initialize() {
-    DrivetrainSubsystem.getInstance().setPower(-.4, -.4);
+    DrivetrainSubsystem.getInstance().setPower(-.3, -.3);
   }
 
   @Override
