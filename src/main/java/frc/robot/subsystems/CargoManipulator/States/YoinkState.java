@@ -1,7 +1,7 @@
 package frc.robot.subsystems.CargoManipulator.States;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.Constants;
 import frc.robot.subsystems.CargoManipulator.CargoManipulatorSubsystem;
-import frc.robot.Constants;
 
 
 public class YoinkState extends CommandBase {

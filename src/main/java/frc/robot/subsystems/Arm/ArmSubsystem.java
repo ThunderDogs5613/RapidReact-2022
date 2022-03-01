@@ -4,8 +4,8 @@
 
 package frc.robot.subsystems.Arm;
 
-import frc.robot.Constants;
-import frc.robot.RobotMap;
+import frc.robot.Constants.Constants;
+import frc.robot.Constants.RobotMap;
 import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;

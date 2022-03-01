@@ -5,8 +5,8 @@
 package frc.robot.subsystems.Arm.States;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.Constants;
 import frc.robot.subsystems.Arm.ArmSubsystem;
-import frc.robot.Constants;
 
 
 public class ManualRaise extends CommandBase {

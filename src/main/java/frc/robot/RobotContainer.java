@@ -5,6 +5,8 @@
 package frc.robot;
 
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.Autos.Collect2Cargo;
+import frc.robot.commands.Autos.ScoreAndDrive;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Arm.ArmSubsystem;
 import frc.robot.subsystems.Arm.States.ManualLower;
@@ -17,8 +19,9 @@ import frc.robot.subsystems.CargoManipulator.States.YeetState;
 import frc.robot.subsystems.CargoManipulator.States.YoinkState;
 import frc.robot.subsystems.Drivetrain.DrivetrainSubsystem;
 import frc.robot.subsystems.Drivetrain.States.OpenLoopState;
-import frc.robot.Constants.ArmConstants.ArmPosition;
-import frc.robot.ControllerMap.Logitech_Controller;
+import frc.robot.Constants.ControllerMap;
+import frc.robot.Constants.Constants.ArmConstants.ArmPosition;
+import frc.robot.Constants.ControllerMap.Logitech_Controller;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -36,9 +39,6 @@ public class RobotContainer {
   DrivetrainSubsystem drive;
   CargoManipulatorSubsystem cM;
   ArmSubsystem arm;
-
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();  //review this line when making real autonomous mode(s)
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);  //review this line when making real autonomous mode(s)
 
   public RobotContainer() {
     initalizeSubsystems();
@@ -71,6 +71,6 @@ public class RobotContainer {
 
   
   public Command getAutonomousCommand() {
-    return m_autoCommand;
+    return new ScoreAndDrive();
   }
 }
