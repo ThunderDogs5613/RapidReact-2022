@@ -4,10 +4,8 @@
 
 package frc.robot;
 
-import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.Autos.Collect2Cargo;
 import frc.robot.commands.Autos.ScoreAndDrive;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Arm.ArmSubsystem;
 import frc.robot.subsystems.Arm.States.ManualLower;
 import frc.robot.subsystems.Arm.States.ManualRaise;
