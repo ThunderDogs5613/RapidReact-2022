@@ -7,7 +7,6 @@ package frc.robot.subsystems.Arm;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj2.command.PIDSubsystem;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -45,7 +44,12 @@ public class ArmSubsystem extends PIDSubsystem {
 
   @Override
   protected void useOutput(double output, double setpoint) {
-    setPower(output * -1.5);
+    if (Math.abs(output) > 0.5) {
+      output = .5;
+    }
+
+    setPower(output * -2);
+
   }
 
   @Override

@@ -23,10 +23,10 @@ public final class Constants {
     public static final class ArmConstants{
         public static final double RaisePower = .2;
         public static final double LowerPower = -.15;
-        public static final double kP = 1.0;
-        public static final double kI = 0.2;
-        public static final double kD = 0.05;
-        public static final double HighPosition = 0.22;
+        public static final double kP = .8;
+        public static final double kI = 0.05;
+        public static final double kD = 0.0;
+        public static final double HighPosition = 0.21;
         public static final double LowPosition = 0.48;
         public enum ArmPosition{
             LOW, HIGH
