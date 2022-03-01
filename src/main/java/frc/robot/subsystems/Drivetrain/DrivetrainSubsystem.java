@@ -43,8 +43,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     else if (throttle < -.02) { throttle = throttle * -throttle;  }
     else {  throttle = 0;  }
 
-    if (rotation > .02) {  rotation = rotation * rotation * .15;  }
-    else if (rotation < - .02) {  rotation = rotation * -rotation * .15;  }
+    if (rotation > .02) {  rotation = rotation * rotation * .2;  }
+    else if (rotation < - .02) {  rotation = rotation * -rotation * .2;  }
     else {  rotation = 0; }
     
     double leftPower = throttle - rotation;
