@@ -71,6 +71,6 @@ public class RobotContainer {
 
   
   public Command getAutonomousCommand() {
-    return new Collect2Cargo();
+    return new ScoreAndDrive();
   }
 }
