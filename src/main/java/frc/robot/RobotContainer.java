@@ -4,7 +4,8 @@
 
 package frc.robot;
 
-import frc.robot.commands.Autos.Collect2Cargo;
+//
+//import frc.robot.commands.Autos.Collect2Cargo;
 import frc.robot.commands.Autos.ScoreAndDrive;
 import frc.robot.subsystems.Arm.ArmSubsystem;
 import frc.robot.subsystems.Arm.States.ManualLower;
@@ -16,10 +17,12 @@ import frc.robot.subsystems.CargoManipulator.States.IdleState;
 import frc.robot.subsystems.CargoManipulator.States.YeetState;
 import frc.robot.subsystems.CargoManipulator.States.YoinkState;
 import frc.robot.subsystems.Drivetrain.DrivetrainSubsystem;
+import frc.robot.subsystems.Drivetrain.States.HangarDrive;
 import frc.robot.subsystems.Drivetrain.States.OpenLoopState;
 import frc.robot.Constants.ControllerMap;
 import frc.robot.Constants.Constants.ArmConstants.ArmPosition;
 import frc.robot.Constants.ControllerMap.Logitech_Controller;
+import frc.robot.Constants.ControllerMap.Generic_Button_Pad;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -65,6 +68,7 @@ public class RobotContainer {
     new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B4).whileHeld(new ManualLower());
     new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B3).whenPressed(new PositionState(ArmPosition.LOW));
     new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B5).whenPressed(new PositionState(ArmPosition.HIGH));
+    new JoystickButton(ControllerMap.getButtonPad(), Generic_Button_Pad.Button.B1).whileHeld(new HangarDrive());
   }
 
   
