@@ -4,8 +4,6 @@
 
 package frc.robot.commands.Autos;
 
-import java.util.Timer;
-
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.CargoManipulator.States.YeetState;
 import frc.robot.subsystems.Drivetrain.States.DriveBackwards;
