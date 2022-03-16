@@ -21,8 +21,8 @@ public final class Constants {
     }
 
     public static final class ArmConstants{
-        public static final double RaisePower = .2;
-        public static final double LowerPower = -.15;
+        public static final double RaisePower = .20;
+        public static final double LowerPower = -.65;
         public static final double kP = .8;
         public static final double kI = 0.05;
         public static final double kD = 0.0;
