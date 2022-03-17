@@ -6,6 +6,7 @@ package frc.robot.subsystems.Arm;
 
 import frc.robot.Constants.Constants;
 import frc.robot.Constants.RobotMap;
+import frc.robot.subsystems.Arm.States.PositionState;
 import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -21,10 +22,13 @@ public class ArmSubsystem extends PIDSubsystem {
 
   private CANSparkMax armPivot;
   private DutyCycleEncoder armEncoder;
+  private double kP, kI, kD;
 
   private ArmSubsystem() {
 
-    super(new PIDController(Constants.ArmConstants.kP, Constants.ArmConstants.kI, Constants.ArmConstants.kD));
+
+
+    super(new PIDController(Constants.ArmConstants.kP, Constants.ArmConstants.kI, PositionState.class.));
 
     armPivot = new CANSparkMax(RobotMap.ARM_MOTOR_ID, MotorType.kBrushless);
     armEncoder = new DutyCycleEncoder(RobotMap.ARM_ENCODER_ID);
@@ -47,9 +51,12 @@ public class ArmSubsystem extends PIDSubsystem {
     if (Math.abs(output) > 0.5) {
       output = .5;
     }
-
     setPower(output * -2);
+  }
 
+  @Override
+  protected void setPID(double kP, double kI, double kD) {
+    
   }
 
   @Override

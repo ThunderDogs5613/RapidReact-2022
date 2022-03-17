@@ -22,13 +22,25 @@ public class PositionState extends CommandBase {
   @Override
   public void initialize() {
     switch(position) {
-      case LOW :
-        ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.LowPosition);
+      case LOW_CARGO :
+        ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.LowCargoPosition);
         break;
 
-      case HIGH :
-        ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.HighPosition);
+      case HIGH_CARGO :
+        ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.HighCargoPosition);
         break;  
+
+      case CLIMB_BACK :
+      
+        break;
+
+      case CLIMB_UP :
+
+        break;
+
+      case HOLD :
+
+        break;
     }
     ArmSubsystem.getInstance().enable();
   }
