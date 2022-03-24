@@ -28,6 +28,7 @@ public final class Constants {
         public static final double kD = 0.0;
         public static final double HighCargoPosition = 0.21;
         public static final double LowCargoPosition = 0.48;
+        public static final double DefaultFeedForward = 0;
         public enum ArmPosition{
             LOW_CARGO, HIGH_CARGO, CLIMB_BACK, CLIMB_UP, HOLD
         }

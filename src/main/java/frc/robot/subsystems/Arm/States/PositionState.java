@@ -24,14 +24,16 @@ public class PositionState extends CommandBase {
     switch(position) {
       case LOW_CARGO :
         ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.LowCargoPosition);
+        ArmSubsystem.getInstance().setFeedForward(0);
         break;
 
       case HIGH_CARGO :
         ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.HighCargoPosition);
+        ArmSubsystem.getInstance().setFeedForward(0);
         break;  
 
       case CLIMB_BACK :
-      
+
         break;
 
       case CLIMB_UP :

@@ -22,17 +22,18 @@ public class ArmSubsystem extends PIDSubsystem {
 
   private CANSparkMax armPivot;
   private DutyCycleEncoder armEncoder;
-  private double kP, kI, kD;
+  private double feedForward;
 
   private ArmSubsystem() {
 
 
 
-    super(new PIDController(Constants.ArmConstants.kP, Constants.ArmConstants.kI, PositionState.class.));
+    super(new PIDController(Constants.ArmConstants.kP, Constants.ArmConstants.kI, Constants.ArmConstants.kD));
 
     armPivot = new CANSparkMax(RobotMap.ARM_MOTOR_ID, MotorType.kBrushless);
     armEncoder = new DutyCycleEncoder(RobotMap.ARM_ENCODER_ID);
 
+    feedForward = Constants.ArmConstants.DefaultFeedForward;
   }
 
   public static ArmSubsystem getInstance() {
@@ -46,17 +47,16 @@ public class ArmSubsystem extends PIDSubsystem {
   armPivot.set(power);
   }
 
+  public void setFeedForward(double newFeedForward) {
+    feedForward = newFeedForward;
+  }
+
   @Override
   protected void useOutput(double output, double setpoint) {
     if (Math.abs(output) > 0.5) {
       output = .5;
     }
-    setPower(output * -2);
-  }
-
-  @Override
-  protected void setPID(double kP, double kI, double kD) {
-    
+    setPower(output * -2 + feedForward);
   }
 
   @Override
