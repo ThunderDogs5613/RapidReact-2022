@@ -21,13 +21,18 @@ public class PathFollowing extends CommandBase {
 
   @Override
   public void initialize() {
+      trajectoryTimer = new Timer();
+      trajectoryTimer.reset();
       trajectoryTimer.start();
   }
 
   @Override
   public void execute() {
     double currentTime = trajectoryTimer.get();
-    Trajectory.State currentState = pathToFollow.sample(currentTime);
+    Trajectory.State currentState = 
+    pathToFollow.
+    sample
+    (currentTime);
 
     double velocity = currentState.velocityMetersPerSecond;
     double angularVelocity = velocity * currentState.curvatureRadPerMeter;

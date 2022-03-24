@@ -19,7 +19,7 @@ public class FieldPositions {
     public static Pose2d TERMINAL_CARGO = new Pose2d(9.82, -23.51, new Rotation2d());
 
 
-    public static Pose2d POINT_10_FEET_AWAY = new Pose2d(10, 0, new Rotation2d());
+    public static Pose2d POINT_10_FEET_AWAY = new Pose2d(10, 0, new Rotation2d(0));
 
     public static double INTAKE_OFFSET = 2.34;
 
