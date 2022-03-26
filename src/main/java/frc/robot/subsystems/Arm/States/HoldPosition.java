@@ -22,7 +22,7 @@ public class HoldPosition extends CommandBase {
 }
   public void execute() {
     System.out.println(ArmSubsystem.getInstance().getArmPosition());
-    currentPosition = ArmSubsystem.getInstance().getArmPosition();
+    /*currentPosition = ArmSubsystem.getInstance().getArmPosition();
 
     if (currentPosition < holdPosition) {
       ArmSubsystem.getInstance().setPower(-.02);
@@ -32,7 +32,7 @@ public class HoldPosition extends CommandBase {
     }
     else {
       ArmSubsystem.getInstance().setPower(0);
-    }
+    } */
   }
 
 }

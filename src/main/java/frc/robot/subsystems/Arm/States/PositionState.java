@@ -24,7 +24,7 @@ public class PositionState extends CommandBase {
     switch(position) {
       case LOW_CARGO :
         ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.LowCargoPosition);
-        ArmSubsystem.getInstance().setFeedForward(0);
+        ArmSubsystem.getInstance().setFeedForward(0.02);
         break;
 
       case HIGH_CARGO :
@@ -45,6 +45,10 @@ public class PositionState extends CommandBase {
         break;
     }
     ArmSubsystem.getInstance().enable();
+  }
+
+  public void execute() {
+    System.out.println(ArmSubsystem.getInstance().getArmPosition());
   }
 
   @Override

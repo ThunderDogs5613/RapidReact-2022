@@ -23,11 +23,11 @@ public final class Constants {
     public static final class ArmConstants{
         public static final double RaisePower = .20;
         public static final double LowerPower = -.65;
-        public static final double kP = .8;
-        public static final double kI = 0.05;
-        public static final double kD = 0.0;
-        public static final double HighCargoPosition = 0.21;
-        public static final double LowCargoPosition = 0.48;
+        public static final double kP = 2.5;
+        public static final double kI = 0.01;
+        public static final double kD = 0.02;
+        public static final double HighCargoPosition = 0.209;
+        public static final double LowCargoPosition = 0.477;
         public static final double DefaultFeedForward = 0;
         public enum ArmPosition{
             LOW_CARGO, HIGH_CARGO, CLIMB_BACK, CLIMB_UP, HOLD
