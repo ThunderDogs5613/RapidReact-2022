@@ -29,7 +29,7 @@ public class PositionState extends CommandBase {
 
       case HIGH_CARGO :
         ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.HighCargoPosition);
-        ArmSubsystem.getInstance().setFeedForward(0);
+        ArmSubsystem.getInstance().setFeedForward(0.01);
         break;  
 
       case CLIMB_BACK :
