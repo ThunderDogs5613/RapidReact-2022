@@ -13,6 +13,8 @@ public class PositionState extends CommandBase {
 
   private ArmPosition position;
 
+  private double holdPosition;
+
   public PositionState(ArmPosition position) {
     addRequirements(ArmSubsystem.getInstance());  
 
@@ -21,16 +23,40 @@ public class PositionState extends CommandBase {
 
   @Override
   public void initialize() {
+
+    holdPosition = ArmSubsystem.getInstance().getArmPosition();
+
     switch(position) {
-      case LOW :
-        ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.LowPosition);
+      case LOW_CARGO :
+        ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.LowCargoPosition);
+        ArmSubsystem.getInstance().setFeedForward(0.02);
         break;
 
-      case HIGH :
-        ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.HighPosition);
+      case HIGH_CARGO :
+        ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.HighCargoPosition);
+        ArmSubsystem.getInstance().setFeedForward(0.01);
         break;  
+        
+      case CLIMB_PITCHED :
+        ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.PitchedClimbPos);
+        ArmSubsystem.getInstance().setFeedForward(0.2);
+        break;
+
+      case CLIMB_VERTICAL :
+      ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.VerticalClimbPos);
+      ArmSubsystem.getInstance().setFeedForward(0.05);
+        break;
+
+      case HOLD :
+      ArmSubsystem.getInstance().setSetpoint(holdPosition);
+      ArmSubsystem.getInstance().setFeedForward(0.0);
+        break;
     }
     ArmSubsystem.getInstance().enable();
+  }
+
+  public void execute() {
+    System.out.println(ArmSubsystem.getInstance().getArmPosition());
   }
 
   @Override

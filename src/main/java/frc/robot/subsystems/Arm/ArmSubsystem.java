@@ -7,13 +7,11 @@ package frc.robot.subsystems.Arm;
 import frc.robot.Constants.Constants;
 import frc.robot.Constants.RobotMap;
 import edu.wpi.first.wpilibj2.command.PIDSubsystem;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
-
-
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class ArmSubsystem extends PIDSubsystem {
   
@@ -21,14 +19,23 @@ public class ArmSubsystem extends PIDSubsystem {
 
   private CANSparkMax armPivot;
   private DutyCycleEncoder armEncoder;
+  private double feedForward;
+  private double adjustedOutput;
+  private double limitedOutput;
+  private SlewRateLimiter armLimiter;
 
   private ArmSubsystem() {
+
+
 
     super(new PIDController(Constants.ArmConstants.kP, Constants.ArmConstants.kI, Constants.ArmConstants.kD));
 
     armPivot = new CANSparkMax(RobotMap.ARM_MOTOR_ID, MotorType.kBrushless);
     armEncoder = new DutyCycleEncoder(RobotMap.ARM_ENCODER_ID);
 
+    feedForward = Constants.ArmConstants.DefaultFeedForward;
+
+    armLimiter = new SlewRateLimiter(1.8);
   }
 
   public static ArmSubsystem getInstance() {
@@ -42,14 +49,15 @@ public class ArmSubsystem extends PIDSubsystem {
   armPivot.set(power);
   }
 
+  public void setFeedForward(double newFeedForward) {
+    feedForward = newFeedForward;
+  }
+
   @Override
   protected void useOutput(double output, double setpoint) {
-    if (Math.abs(output) > 0.5) {
-      output = .5;
-    }
-
-    setPower(output * -2);
-
+    adjustedOutput = -output + feedForward;
+    limitedOutput = armLimiter.calculate(adjustedOutput);
+    setPower(limitedOutput);
   }
 
   @Override

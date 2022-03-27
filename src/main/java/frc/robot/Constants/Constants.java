@@ -21,15 +21,18 @@ public final class Constants {
     }
 
     public static final class ArmConstants{
-        public static final double RaisePower = .2;
-        public static final double LowerPower = -.15;
-        public static final double kP = .8;
-        public static final double kI = 0.05;
-        public static final double kD = 0.0;
-        public static final double HighPosition = 0.21;
-        public static final double LowPosition = 0.48;
+        public static final double RaisePower = .20;
+        public static final double LowerPower = -.65;
+        public static final double kP = 2.5;
+        public static final double kI = 0.02;
+        public static final double kD = 0.03;
+        public static final double HighCargoPosition = 0.209;
+        public static final double LowCargoPosition = 0.477;
+        public static final double VerticalClimbPos = 0.35;
+        public static final double PitchedClimbPos = 0.25;
+        public static final double DefaultFeedForward = 0;
         public enum ArmPosition{
-            LOW, HIGH
+            LOW_CARGO, HIGH_CARGO, CLIMB_VERTICAL, CLIMB_PITCHED, HOLD
         }
     }
 
