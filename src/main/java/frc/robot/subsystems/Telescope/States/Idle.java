@@ -8,7 +8,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Telescope.TelescopeSubsystem;
 
 public class Idle extends CommandBase {
+
+  private TelescopeSubsystem telescope = TelescopeSubsystem.getInstance();
+
   public Idle() {
+    addRequirements(telescope);
   }
 
   @Override
