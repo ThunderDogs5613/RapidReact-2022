@@ -9,7 +9,6 @@ package frc.robot;
 import frc.robot.commands.Autos.ScoreAndDrive;
 import frc.robot.subsystems.Arm.ArmSubsystem;
 import frc.robot.subsystems.Arm.States.PositionState;
-import frc.robot.subsystems.Arm.States.HoldPosition;
 import frc.robot.subsystems.CargoManipulator.CargoManipulatorSubsystem;
 import frc.robot.subsystems.CargoManipulator.States.IdleState;
 import frc.robot.subsystems.CargoManipulator.States.YeetState;
@@ -56,7 +55,7 @@ public class RobotContainer {
   private void setAllDefaultCommands() {
     CommandScheduler.getInstance().setDefaultCommand(drive, new OpenLoopState());
     CommandScheduler.getInstance().setDefaultCommand(cM,new IdleState());
-    CommandScheduler.getInstance().setDefaultCommand(arm, new HoldPosition());
+    CommandScheduler.getInstance().setDefaultCommand(arm, new PositionState(ArmPosition.HOLD));
   }
 
   private void configureButtonBindings() {
