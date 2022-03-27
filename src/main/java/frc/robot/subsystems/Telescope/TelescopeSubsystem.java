@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems.Telescope;
 
-import com.ctre.phoenix.sensors.CANCoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -17,13 +16,23 @@ public class TelescopeSubsystem extends SubsystemBase {
 
   private CANSparkMax winchMotor1;
   private CANSparkMax winchMotor2;
-  private CANCoder winchEncoder;
 
   public TelescopeSubsystem() {
 
     winchMotor1 = new CANSparkMax(RobotMap.WINCH_MOTOR_1_ID, MotorType.kBrushless);
     winchMotor2 = new CANSparkMax(RobotMap.WINCH_MOTOR_2_ID, MotorType.kBrushless);
-    
+  }
+
+  public static TelescopeSubsystem getInstance() {
+    if (instance == null){
+      instance = new TelescopeSubsystem();
+    }
+    return instance;
+  }
+
+  public void setSpeed(double speed) {
+    winchMotor1.set(speed);
+    winchMotor2.set(speed);
   }
 
   @Override
