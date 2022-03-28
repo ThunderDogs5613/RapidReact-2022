@@ -16,7 +16,7 @@ public class PathFollowing extends CommandBase {
 
   public PathFollowing(Trajectory pathToFollow) {
     addRequirements(DrivetrainSubsystem.getInstance());
-    pathToFollow = this.pathToFollow;
+    this.pathToFollow = pathToFollow;
     }
 
   @Override

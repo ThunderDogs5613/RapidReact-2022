@@ -18,6 +18,6 @@ public class Trajectories {
 
     public static final Trajectory testTraj0 = TrajectoryGenerator.generateTrajectory(TwoCargoPointList, new TrajectoryConfig(10, 23).setReversed(true));
 
-    public static final Trajectory basicTestTraj = TrajectoryGenerator.generateTrajectory(BasicTestPointList, new TrajectoryConfig(10, 10).setReversed(false));
+    public static final Trajectory basicTestTraj = TrajectoryGenerator.generateTrajectory(BasicTestPointList, new TrajectoryConfig(2, 1).setReversed(false));
 
 }
