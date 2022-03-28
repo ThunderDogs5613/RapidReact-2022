@@ -16,6 +16,6 @@ public class Raise extends CommandBase {
 
   @Override
   public void execute() {
-    TelescopeSubsystem.getInstance().setSpeed(.5);
+    TelescopeSubsystem.getInstance().setSpeed(.4);
   }
 }
