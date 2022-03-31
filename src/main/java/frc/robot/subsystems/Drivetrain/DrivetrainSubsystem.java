@@ -58,8 +58,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     setPower(leftPower, rightPower);
   }
   
-  public void setCurvature(double limitedThrottle, double rotation, boolean rotationInPlace) {
-    WheelSpeeds speeds = DifferentialDrive.curvatureDriveIK(limitedThrottle, -rotation, rotationInPlace);
+  public void setCurvature(double throttle, double rotation, boolean rotationInPlace) {
+    WheelSpeeds speeds = DifferentialDrive.curvatureDriveIK(throttle, -rotation, rotationInPlace);
     double leftPower = speeds.left;
     double rightPower = speeds.right;
     setPower(leftPower, rightPower);
