@@ -7,6 +7,7 @@ package frc.robot;
 //
 //import frc.robot.commands.Autos.Collect2Cargo;
 import frc.robot.commands.Autos.ScoreAndDrive;
+import frc.robot.commands.Autos.TestAuto;
 import frc.robot.subsystems.Arm.ArmSubsystem;
 import frc.robot.subsystems.Arm.States.PositionState;
 import frc.robot.subsystems.CargoManipulator.CargoManipulatorSubsystem;
@@ -77,6 +78,6 @@ public class RobotContainer {
 
   
   public Command getAutonomousCommand() {
-    return new ScoreAndDrive();
+    return new TestAuto();
   }
 }

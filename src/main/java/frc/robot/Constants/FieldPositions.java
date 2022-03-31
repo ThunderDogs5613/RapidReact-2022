@@ -5,7 +5,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 
 public class FieldPositions {
-    public static Pose2d ORIGIN = new Pose2d();     //for us, Origin is the center of the field or hub
+    public static Pose2d ORIGIN = new Pose2d(0, 0, new Rotation2d(0));     //for us, Origin is the center of the field or hub
     public static Pose2d START_1 = new Pose2d(4.12, -1.58, new Rotation2d(-69));
 
     public static Pose2d TARMAC_ALLIANCE_CARGO_1 = new Pose2d(12.57, -2.16, new Rotation2d());
@@ -17,6 +17,9 @@ public class FieldPositions {
     public static Pose2d TARMAC_OPPONENT_CARGO_3 = new Pose2d(-10.41, -7.36, new Rotation2d());
 
     public static Pose2d TERMINAL_CARGO = new Pose2d(9.82, -23.51, new Rotation2d());
+
+
+    public static Pose2d POINT_10_FEET_AWAY = new Pose2d(.2, 0, new Rotation2d(0));
 
     public static double INTAKE_OFFSET = 2.34;
 
