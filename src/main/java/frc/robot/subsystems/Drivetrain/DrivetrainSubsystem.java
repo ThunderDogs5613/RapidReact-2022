@@ -4,9 +4,11 @@
 
 package frc.robot.subsystems.Drivetrain;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import frc.robot.Constants.RobotMap;
 
 import com.revrobotics.CANSparkMax;
@@ -17,6 +19,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class DrivetrainSubsystem extends SubsystemBase {
 
   private CANSparkMax motorRF, motorRR, motorLF, motorLR;
+  private SlewRateLimiter throttleRateLimiter;
 
   private static DrivetrainSubsystem instance;
 
@@ -27,6 +30,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     motorLR = new CANSparkMax(RobotMap.LEFT_REAR_MOTOR_ID, MotorType.kBrushless);
     motorRF.setInverted(true);
     motorRR.setInverted(true);
+    throttleRateLimiter = new SlewRateLimiter(1.75);
   }
 
   public static synchronized DrivetrainSubsystem getInstance() {
@@ -38,22 +42,24 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public void setArcade(double throttle, double rotation) {
     
-    if (throttle > .02) {  throttle = throttle * -throttle; }
-    else if (throttle < -.02) { throttle = throttle * throttle;  }
-    else {  throttle = 0;  }
+    double limitedThrottle = throttleRateLimiter.calculate(throttle);
 
-    if (rotation > .02) {  rotation = rotation * rotation * .15;  }
-    else if (rotation < - .02) {  rotation = rotation * -rotation * .15;  }
+    if (limitedThrottle > .02) {  limitedThrottle = limitedThrottle * -limitedThrottle; }
+    else if (limitedThrottle < -.02) { limitedThrottle = limitedThrottle * limitedThrottle;  }
+    else {  limitedThrottle = 0;  }
+
+    if (rotation > .02) {  rotation = rotation * rotation * rotation * rotation * .2;  }
+    else if (rotation < - .02) {  rotation = rotation * rotation * rotation * -rotation * .2;  }
     else {  rotation = 0; }
     
-    double leftPower = throttle + rotation;
-    double rightPower = throttle - rotation;
+    double leftPower = limitedThrottle + rotation;
+    double rightPower = limitedThrottle - rotation;
 
     setPower(leftPower, rightPower);
   }
   
-  public void setCurvature(double throttle, double rotation, boolean rotationInPlace) {
-    WheelSpeeds speeds = DifferentialDrive.curvatureDriveIK(throttle, -rotation, rotationInPlace);
+  public void setCurvature(double limitedThrottle, double rotation, boolean rotationInPlace) {
+    WheelSpeeds speeds = DifferentialDrive.curvatureDriveIK(limitedThrottle, -rotation, rotationInPlace);
     double leftPower = speeds.left;
     double rightPower = speeds.right;
     setPower(leftPower, rightPower);

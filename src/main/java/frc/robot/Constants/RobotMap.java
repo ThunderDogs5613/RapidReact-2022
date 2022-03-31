@@ -13,4 +13,7 @@ public class RobotMap {
     public static final int ARM_ENCODER_ID = 00;
     
     public static final int INTAKE_ROLLER_MOTOR_ID = 06;
+
+    public static final int WINCH_MOTOR_1_ID = 7;
+    public static final int WINCH_MOTOR_2_ID = 8;
 }

@@ -21,9 +21,4 @@ public class ManualRaise extends CommandBase {
     public void initialize() {
         armPivot.setPower(Constants.ArmConstants.RaisePower);
     }
-
-    public void end() {
-        armPivot.setPower(0);
-        System.out.print("manual control should end");
-    }
 }

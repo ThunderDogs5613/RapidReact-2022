@@ -12,9 +12,10 @@ public class ScoreAndDrive extends SequentialCommandGroup {
 
   public ScoreAndDrive() {
     
+    System.out.print("scoreAndDrive Autonomous");
     addCommands(
-      new YeetState().withTimeout(1),
-      new DriveBackwards().withTimeout(1)
+      new YeetState().withTimeout(4),
+      new DriveBackwards().withTimeout(2)
     );
   }
 }
