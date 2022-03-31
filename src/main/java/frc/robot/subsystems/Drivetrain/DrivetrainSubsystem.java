@@ -19,7 +19,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class DrivetrainSubsystem extends SubsystemBase {
 
   private CANSparkMax motorRF, motorRR, motorLF, motorLR;
-  private SlewRateLimiter throttleRateLimiter;
+  private SlewRateLimiter throttleRateLimiter, autonThrotLimiter, autonRotLimiter;
 
   private static DrivetrainSubsystem instance;
 
@@ -30,7 +30,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
     motorLR = new CANSparkMax(RobotMap.LEFT_REAR_MOTOR_ID, MotorType.kBrushless);
     motorRF.setInverted(true);
     motorRR.setInverted(true);
+
     throttleRateLimiter = new SlewRateLimiter(1.75);
+    autonThrotLimiter = new SlewRateLimiter(1.5);
+    autonRotLimiter = new SlewRateLimiter(2);
   }
 
   public static synchronized DrivetrainSubsystem getInstance() {
@@ -70,6 +73,16 @@ public class DrivetrainSubsystem extends SubsystemBase {
     motorRR.set(rightPower);
     motorLF.set(leftPower);
     motorLR.set(leftPower);
+  }
+
+  public void setAutonPower(double inThrottle, double inRotation) {
+    double throttle = autonThrotLimiter.calculate(inThrottle);
+    double rotation = autonRotLimiter.calculate(inRotation);
+
+    double leftPower = throttle + rotation;
+    double rightPower = throttle - rotation;
+
+    setPower(leftPower, rightPower);
   }
 
   @Override

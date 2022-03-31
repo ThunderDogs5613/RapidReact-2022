@@ -6,16 +6,16 @@ package frc.robot.commands.Autos;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.CargoManipulator.States.YeetState;
-import frc.robot.subsystems.Drivetrain.States.DriveBackwards;
+import frc.robot.subsystems.Drivetrain.States.SetAutonArcade;
 
-public class ScoreAndDrive extends SequentialCommandGroup {
+public class ScoreAndTaxi extends SequentialCommandGroup {
 
-  public ScoreAndDrive() {
+  public ScoreAndTaxi() {
     
     System.out.print("scoreAndDrive Autonomous");
     addCommands(
       new YeetState().withTimeout(4),
-      new DriveBackwards().withTimeout(2)
+      new SetAutonArcade(-.3, 0)
     );
   }
 }

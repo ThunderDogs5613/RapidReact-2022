@@ -7,20 +7,18 @@ package frc.robot.subsystems.Drivetrain.States;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain.DrivetrainSubsystem;
 
-public class DriveBackwards extends CommandBase {
+public class SetAutonArcade extends CommandBase {
 
+  double inputThrottle, inputRotation;
 
-  public DriveBackwards() {
+  public SetAutonArcade(double inputThrottle, double inputRotation) {
     addRequirements(DrivetrainSubsystem.getInstance());
   }
 
   @Override
   public void initialize() {
-    DrivetrainSubsystem.getInstance().setPower(-.3, -.3);
+    DrivetrainSubsystem.getInstance().setAutonPower(inputThrottle, inputRotation);;
   }
-
-  @Override
-  public void execute() {}
 
   @Override
   public void end(boolean interrupted) {
