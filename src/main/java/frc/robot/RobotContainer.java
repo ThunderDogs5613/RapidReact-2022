@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import frc.robot.commands.Autos.AutoChooser;
 //
 //import frc.robot.commands.Autos.Collect2Cargo;
 import frc.robot.commands.Autos.ScoreAndTaxi;
@@ -26,6 +27,7 @@ import frc.robot.Constants.ControllerMap;
 import frc.robot.Constants.Constants.ArmConstants.ArmPosition;
 import frc.robot.Constants.ControllerMap.Logitech_Controller;
 import frc.robot.Constants.ControllerMap.Generic_Button_Pad;
+import  frc.robot.commands.Autos.AutoChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -45,10 +47,13 @@ public class RobotContainer {
   ArmSubsystem arm;
   TelescopeSubsystem telescope;
 
+
   public RobotContainer() {
     initalizeSubsystems();
     configureButtonBindings();
     setAllDefaultCommands();
+    AutoChooser.configureAutoChooser();
+
   }
 
   private void initalizeSubsystems() {
@@ -80,6 +85,6 @@ public class RobotContainer {
 
   
   public Command getAutonomousCommand() {
-    return new TestAuto();
+    return AutoChooser.auto_chooser.getSelected();
   }
 }
