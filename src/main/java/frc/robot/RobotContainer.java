@@ -17,6 +17,7 @@ import frc.robot.subsystems.CargoManipulator.States.YoinkState;
 import frc.robot.subsystems.Drivetrain.DrivetrainSubsystem;
 import frc.robot.subsystems.Drivetrain.States.HangarDrive;
 import frc.robot.subsystems.Drivetrain.States.OpenLoopState;
+import frc.robot.subsystems.Drivetrain.States.SetAutonArcade;
 import frc.robot.subsystems.Telescope.TelescopeSubsystem;
 import frc.robot.subsystems.Telescope.States.Idle;
 import frc.robot.subsystems.Telescope.States.Lower;
@@ -74,6 +75,7 @@ public class RobotContainer {
     new JoystickButton(ControllerMap.getButtonPad(), Generic_Button_Pad.Button.B1).whileHeld(new HangarDrive());
     new JoystickButton(ControllerMap.getButtonPad(), Generic_Button_Pad.Button.B9).whileHeld(new Raise());
     new JoystickButton(ControllerMap.getButtonPad(), Generic_Button_Pad.Button.B12).whileHeld(new Lower());
+    new JoystickButton(ControllerMap.getButtonPad(), Generic_Button_Pad.Button.B4).whileHeld(new SetAutonArcade(.2, 0));
   }
 
   
