@@ -12,13 +12,15 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.RelativeEncoder;
 
 public class ArmSubsystem extends PIDSubsystem {
   
   private static ArmSubsystem instance;
 
   private CANSparkMax armPivot;
-  private DutyCycleEncoder armEncoder;
+  //private DutyCycleEncoder armEncoder;
+  private RelativeEncoder NeoEncoder;
   private double feedForward;
   private double adjustedOutput;
   private double limitedOutput;
@@ -31,7 +33,9 @@ public class ArmSubsystem extends PIDSubsystem {
     super(new PIDController(Constants.ArmConstants.kP, Constants.ArmConstants.kI, Constants.ArmConstants.kD));
 
     armPivot = new CANSparkMax(RobotMap.ARM_MOTOR_ID, MotorType.kBrushless);
-    armEncoder = new DutyCycleEncoder(RobotMap.ARM_ENCODER_ID);
+    //armEncoder = new DutyCycleEncoder(RobotMap.ARM_ENCODER_ID);
+    NeoEncoder = armPivot.getEncoder();
+
 
     feedForward = Constants.ArmConstants.DefaultFeedForward;
 
@@ -55,9 +59,9 @@ public class ArmSubsystem extends PIDSubsystem {
 
   @Override
   protected void useOutput(double output, double setpoint) {
-    adjustedOutput = -output + feedForward;
-    limitedOutput = armLimiter.calculate(adjustedOutput);
-    setPower(limitedOutput);
+    adjustedOutput = output + feedForward;
+    //limitedOutput = armLimiter.calculate(adjustedOutput);
+    setPower(output);
   }
 
   @Override
@@ -66,6 +70,7 @@ public class ArmSubsystem extends PIDSubsystem {
   } 
   
   public double getArmPosition() {
-    return armEncoder.get();
+    //return armEncoder.get();
+    return NeoEncoder.getPosition();
   }
 }
