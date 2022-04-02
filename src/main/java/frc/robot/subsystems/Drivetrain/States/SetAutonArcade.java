@@ -13,6 +13,8 @@ public class SetAutonArcade extends CommandBase {
 
   public SetAutonArcade(double inputThrottle, double inputRotation) {
     addRequirements(DrivetrainSubsystem.getInstance());
+    this.inputThrottle = inputThrottle;
+    this.inputRotation = inputRotation;
   }
 
   @Override
