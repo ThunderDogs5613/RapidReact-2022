@@ -51,8 +51,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     else if (limitedThrottle < -.02) { limitedThrottle = limitedThrottle * limitedThrottle;  }
     else {  limitedThrottle = 0;  }
 
-    if (rotation > .02) {  rotation = rotation * rotation * rotation * rotation * .2;  }
-    else if (rotation < - .02) {  rotation = rotation * rotation * rotation * -rotation * .2;  }
+    if (rotation > .02) {  rotation = rotation * rotation * .3;  }
+    else if (rotation < - .02) {  rotation = rotation * rotation * -.3;  }
     else {  rotation = 0; }
     
     double leftPower = limitedThrottle + rotation;
@@ -77,7 +77,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public void setAutonPower(double inThrottle, double inRotation) {
     double throttle = autonThrotLimiter.calculate(inThrottle);
-    double rotation = autonRotLimiter.calculate(inRotation);
+    //double rotation = autonRotLimiter.calculate(inRotation);
+    double rotation = inRotation;
 
     double leftPower = throttle + rotation;
     double rightPower = throttle - rotation;
