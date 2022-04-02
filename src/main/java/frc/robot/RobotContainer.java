@@ -10,7 +10,11 @@ import frc.robot.commands.Autos.AutoChooser;
 import frc.robot.commands.Autos.ScoreAndTaxi;
 import frc.robot.commands.Autos.TestAuto;
 import frc.robot.subsystems.Arm.ArmSubsystem;
+import frc.robot.subsystems.Arm.States.ManualLower;
+import frc.robot.subsystems.Arm.States.ManualRaise;
 import frc.robot.subsystems.Arm.States.PositionState;
+import frc.robot.subsystems.Arm.States.PrintState;
+import frc.robot.subsystems.Arm.States.Stop;
 import frc.robot.subsystems.CargoManipulator.CargoManipulatorSubsystem;
 import frc.robot.subsystems.CargoManipulator.States.IdleState;
 import frc.robot.subsystems.CargoManipulator.States.YeetState;
@@ -69,7 +73,7 @@ public class RobotContainer {
     CommandScheduler.getInstance().setDefaultCommand(drive, new OpenLoopState());
     CommandScheduler.getInstance().setDefaultCommand(cM,new IdleState());
     CommandScheduler.getInstance().setDefaultCommand(telescope, new Idle());
-    CommandScheduler.getInstance().setDefaultCommand(arm, new PositionState(ArmPosition.HOLD));
+    CommandScheduler.getInstance().setDefaultCommand(arm, new PrintState());
   }
 
   private void configureButtonBindings() {
@@ -77,6 +81,9 @@ public class RobotContainer {
     new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.THUMB).whileHeld(new YeetState());
     new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B3).whenPressed(new PositionState(ArmPosition.LOW_CARGO));
     new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B5).whenPressed(new PositionState(ArmPosition.HIGH_CARGO));
+    new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B4).whileHeld(new ManualLower());
+    new JoystickButton(ControllerMap.getDriveStick(), Logitech_Controller.Button.B6).whileHeld(new ManualRaise());
+    new JoystickButton(ControllerMap.getButtonPad(), Generic_Button_Pad.Button.B6).whenPressed(new Stop());
     new JoystickButton(ControllerMap.getButtonPad(), Generic_Button_Pad.Button.B1).whileHeld(new HangarDrive());
     new JoystickButton(ControllerMap.getButtonPad(), Generic_Button_Pad.Button.B9).whileHeld(new Raise());
     new JoystickButton(ControllerMap.getButtonPad(), Generic_Button_Pad.Button.B12).whileHeld(new Lower());
