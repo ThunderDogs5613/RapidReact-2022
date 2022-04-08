@@ -31,7 +31,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     motorRF.setInverted(true);
     motorRR.setInverted(true);
 
-    throttleRateLimiter = new SlewRateLimiter(1.75);
+    throttleRateLimiter = new SlewRateLimiter(1.8);
     autonThrotLimiter = new SlewRateLimiter(1.5);
     autonRotLimiter = new SlewRateLimiter(2);
   }
@@ -51,8 +51,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     else if (limitedThrottle < -.02) { limitedThrottle = limitedThrottle * limitedThrottle;  }
     else {  limitedThrottle = 0;  }
 
-    if (rotation > .02) {  rotation = rotation * rotation * .3;  }
-    else if (rotation < - .02) {  rotation = rotation * rotation * -.3;  }
+    if (rotation > .02) {  rotation = rotation * rotation * .25;  }
+    else if (rotation < - .02) {  rotation = rotation * rotation * -.25;  }
     else {  rotation = 0; }
     
     double leftPower = limitedThrottle + rotation;
