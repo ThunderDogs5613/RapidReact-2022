@@ -5,6 +5,7 @@ import frc.robot.commands.Autos.TwoBallAuto;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 
@@ -19,8 +20,9 @@ public class AutoChooser {
     public static SendableChooser<Command> auto_chooser = new SendableChooser<>();
 
     public static void configureAutoChooser() {
-        SmartDashboard.putStringArray("Auto List", {"Score and Taxi", "Plain ol' taxi", "Two Ball Auto"});
-
+        String[] autoList = {"Score and Taxi", "Plain ol' taxi", "Two Ball Auto"};
+        SmartDashboard.putStringArray("Auto List", autoList);
+        
         //auto_chooser.setDefaultOption("Score and Taxi", ScoreAndTaxi);
         //auto_chooser.addOption("Plain ol' taxi", PlainOLTaxi);
         //auto_chooser.addOption("Two Ball Auto", TwoBallAuto);
