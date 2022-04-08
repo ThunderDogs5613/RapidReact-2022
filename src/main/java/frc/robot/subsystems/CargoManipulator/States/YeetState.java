@@ -15,6 +15,13 @@ public class YeetState extends CommandBase {
     @Override
     public void initialize() {
         intake.setSpeed(Constants.CargoManipulatorConstants.YeetPower);
+        System.out.println("Yeet Intake");
     }
+
+    @Override
+  public void end(boolean interrupted) {
+        intake.setSpeed(0);
+        System.out.println("Stop Yeeting");
+  }
 
 }

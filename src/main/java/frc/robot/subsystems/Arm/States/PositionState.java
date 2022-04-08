@@ -30,11 +30,13 @@ public class PositionState extends CommandBase {
       case LOW_CARGO :
         ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.LowCargoPosition);
         ArmSubsystem.getInstance().setFeedForward(0.02);
+        System.out.println("Lower Arm");
         break;
 
       case HIGH_CARGO :
         ArmSubsystem.getInstance().setSetpoint(Constants.ArmConstants.HighCargoPosition);
         ArmSubsystem.getInstance().setFeedForward(0.01);
+        System.out.println("Raise Arm");
         break;  
         
       case CLIMB_PITCHED :
