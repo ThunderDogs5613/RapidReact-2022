@@ -37,6 +37,7 @@ import frc.robot.commands.Autos.AutoChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
@@ -108,6 +109,8 @@ public class RobotContainer {
         return PlainOLTaxi;
        case "Two Ball Auto":
         return TwoBallAuto;
+       default:
+        return ScoreAndTaxi;
       }
     //return AutoChooser.auto_chooser.getSelected();
   }
