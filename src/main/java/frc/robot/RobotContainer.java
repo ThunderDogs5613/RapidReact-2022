@@ -109,6 +109,8 @@ public class RobotContainer {
         return PlainOLTaxi;
        case "Two Ball Auto":
         return TwoBallAuto;
+       case "Nothing":
+        return new WaitCommand(0);
        default:
         return ScoreAndTaxi;
       }

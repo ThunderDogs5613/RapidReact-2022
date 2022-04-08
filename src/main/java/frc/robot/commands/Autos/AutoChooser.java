@@ -20,7 +20,7 @@ public class AutoChooser {
     public static SendableChooser<Command> auto_chooser = new SendableChooser<>();
 
     public static void configureAutoChooser() {
-        String[] autoList = {"Score and Taxi", "Plain ol' taxi", "Two Ball Auto"};
+        String[] autoList = {"Score and Taxi", "Plain ol' taxi", "Two Ball Auto, Nothing"};
         SmartDashboard.putStringArray("Auto List", autoList);
         
         //auto_chooser.setDefaultOption("Score and Taxi", ScoreAndTaxi);
