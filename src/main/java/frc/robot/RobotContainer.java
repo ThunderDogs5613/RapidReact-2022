@@ -5,10 +5,12 @@
 package frc.robot;
 
 import frc.robot.commands.Autos.AutoChooser;
+import frc.robot.commands.Autos.PlainOLTaxi;
 //
 //import frc.robot.commands.Autos.Collect2Cargo;
 import frc.robot.commands.Autos.ScoreAndTaxi;
 import frc.robot.commands.Autos.TestAuto;
+import frc.robot.commands.Autos.TwoBallAuto;
 import frc.robot.subsystems.Arm.ArmSubsystem;
 import frc.robot.subsystems.Arm.States.ManualLower;
 import frc.robot.subsystems.Arm.States.ManualRaise;
@@ -31,7 +33,8 @@ import frc.robot.Constants.ControllerMap;
 import frc.robot.Constants.Constants.ArmConstants.ArmPosition;
 import frc.robot.Constants.ControllerMap.Logitech_Controller;
 import frc.robot.Constants.ControllerMap.Generic_Button_Pad;
-import  frc.robot.commands.Autos.AutoChooser;
+import frc.robot.commands.Autos.AutoChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -92,6 +95,20 @@ public class RobotContainer {
 
   
   public Command getAutonomousCommand() {
-    return AutoChooser.auto_chooser.getSelected();
+
+    final Command TwoBallAuto = new TwoBallAuto();
+    final Command PlainOLTaxi = new PlainOLTaxi();
+    final Command ScoreAndTaxi = new ScoreAndTaxi();
+
+    String selectedAutoName = SmartDashboard.getString("Auto Selector", "Score and Taxi"); // This would make "Drive Forwards the default auto
+    switch(selectedAutoName) {
+       case "Score and Taxi":
+        return ScoreAndTaxi;
+       case "Plain ol' taxi":
+        return PlainOLTaxi;
+       case "Two Ball Auto":
+        return TwoBallAuto;
+      }
+    //return AutoChooser.auto_chooser.getSelected();
   }
 }
