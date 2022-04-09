@@ -27,7 +27,7 @@ public class PrintState extends CommandBase {
   @Override
   public void execute() {
     position = ArmSubsystem.getInstance().getArmPosition();
-    System.out.println(position);
+    //System.out.println(position);
   }
 
 

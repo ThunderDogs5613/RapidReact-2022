@@ -20,18 +20,21 @@ public class TwoBallAuto extends SequentialCommandGroup {
     addCommands(
       race(
         new PositionState(ArmPosition.LOW_CARGO),
-        new SetAutonArcade(.3, 0).withTimeout(2),
+        new SetAutonArcade(.15, 0).withTimeout(2.3),
         new YoinkState()
       ),
       race(
         new PositionState(ArmPosition.HIGH_CARGO),
-        new SetAutonArcade(0, -.2).withTimeout(1.2),
+        new SetAutonArcade(0, -.19).withTimeout(1.16),
         new IdleState()
       ),
+      race(
         new PositionState(ArmPosition.HIGH_CARGO),
-        new SetAutonArcade(.3, 0).withTimeout(4),
+        new SetAutonArcade(.3, 0).withTimeout(3.1)
+      ),
         new YeetState().withTimeout(2),
-        new IdleState()
+        new IdleState(),
+        new PositionState(ArmPosition.HIGH_CARGO)
       
     );
   }

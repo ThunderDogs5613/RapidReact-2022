@@ -58,7 +58,7 @@ public class PositionState extends CommandBase {
   }
 
   public void execute() {
-    System.out.println(ArmSubsystem.getInstance().getArmPosition());
+    //System.out.println(ArmSubsystem.getInstance().getArmPosition());
   }
 
   @Override
