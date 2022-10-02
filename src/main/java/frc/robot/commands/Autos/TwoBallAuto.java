@@ -11,7 +11,7 @@ import frc.robot.subsystems.Arm.States.PositionState;
 import frc.robot.subsystems.CargoManipulator.States.YeetState;
 import frc.robot.subsystems.CargoManipulator.States.YoinkState;
 import frc.robot.subsystems.Drivetrain.States.SetAutonArcade;
-import frc.robot.subsystems.Telescope.States.Idle;
+import frc.robot.subsystems.CargoManipulator.States.IdleState;
 
 public class TwoBallAuto extends SequentialCommandGroup {
 
@@ -20,17 +20,21 @@ public class TwoBallAuto extends SequentialCommandGroup {
     addCommands(
       race(
         new PositionState(ArmPosition.LOW_CARGO),
-        new SetAutonArcade(.35, 0).withTimeout(2),
+        new SetAutonArcade(.15, 0).withTimeout(2.3),
         new YoinkState()
       ),
       race(
         new PositionState(ArmPosition.HIGH_CARGO),
-        new SetAutonArcade(0, -.2).withTimeout(2)
+        new SetAutonArcade(0, -.19).withTimeout(1.16),
+        new IdleState()
       ),
-    
-        new SetAutonArcade(.35, 0).withTimeout(4),
+      race(
+        new PositionState(ArmPosition.HIGH_CARGO),
+        new SetAutonArcade(.3, 0).withTimeout(3.1)
+      ),
         new YeetState().withTimeout(2),
-        new Idle()
+        new IdleState(),
+        new PositionState(ArmPosition.HIGH_CARGO)
       
     );
   }

@@ -20,11 +20,13 @@ public class SetAutonArcade extends CommandBase {
   @Override
   public void initialize() {
     DrivetrainSubsystem.getInstance().setAutonPower(inputThrottle, inputRotation);;
+    System.out.println("Start Driving...");
   }
 
   @Override
   public void end(boolean interrupted) {
     DrivetrainSubsystem.getInstance().setPower(0 , 0);
+    System.out.println("Stop Driving");
   }
 
   @Override

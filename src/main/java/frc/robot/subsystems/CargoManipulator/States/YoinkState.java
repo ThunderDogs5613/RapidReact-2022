@@ -15,6 +15,7 @@ public class YoinkState extends CommandBase {
     @Override
     public void initialize() {
         intake.setSpeed(Constants.CargoManipulatorConstants.YoinkPower);
+        System.out.println("Yoink Intake");
     }
 
 }

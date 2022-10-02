@@ -15,6 +15,7 @@ public class IdleState extends CommandBase {
     @Override
     public void initialize() {
         intake.setSpeed(Constants.CargoManipulatorConstants.IdlePower);
+        System.out.println("Idle Intake");
     }
 
 }
